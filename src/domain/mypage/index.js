@@ -1,0 +1,6 @@
+export { default as MyPageMain } from './MyPageMain'
+export { default as MyPageDetail } from './MyPageDetail'
+export { default as MyPagePortfolio } from './MyPagePortfolio'
+export { default as MyPageRegister } from './MyPageRegister'
+export { default as SelfIntroduce } from './SelfIntroduce'
+export { default as Portfolioshow } from './Portfolioshow'
