@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from "img/logo.png";
 import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -11,7 +11,7 @@ function Aftertopfixed() {
   const handleClickLogOut = () => {
     removeCookies('loginkey');
     navigate('/');
-}
+  }
 
   return (
     <div className="header">
@@ -22,7 +22,7 @@ function Aftertopfixed() {
       </ul>
       <div class="dropdown">
         <button className="button">
-          이지민  <ExpandMoreIcon/>
+          {cookies.name}  <ExpandMoreIcon/>
         </button>
         <div className="dropdown-content">
           <div onClick={()=>navigate('/mypage')}>My page</div>

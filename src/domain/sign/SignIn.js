@@ -31,8 +31,8 @@ const SignIn = () => {
             }
             else if (response.data.login === true){
                 alert('로그인 성공')
-                console.log(response.data.user._id);
-                setCookie("loginkey", response.data.user._id, {path : '/'});
+                setCookie("loginkey", response.data.Id, {path : '/'});
+                setCookie("name", response.data.Name, {path : '/'});
                 navigate('/main')
             }
         }).catch((Error)=>{

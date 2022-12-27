@@ -62,6 +62,7 @@ const SignUp = () => {
         await axios.post("/api/users/signup", formData, config).then((response)=>{
             console.log(response);
             setCookie("loginkey", response.data.Id, {path : '/'});
+            setCookie("name", response.data.Name, {path : '/'});
             navigate('/main');
         }).catch((Error)=>{
             console.log(Error);
