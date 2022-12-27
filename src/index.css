@@ -64,7 +64,7 @@ body {
 
 .background {
   min-height: 100vh;
-  min-width: 1000px;
+  /* min-width: 1000px; */
   position: relative;
 }
 
@@ -329,4 +329,9 @@ footer{
 
 .J2_back {
   margin-top: 10px;
+}
+
+.marketpurchaseform {
+  margin-left: 100px;
+  margin-top: 50px;
 }

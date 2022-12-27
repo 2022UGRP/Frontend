@@ -1,50 +1,49 @@
 import * as React from 'react';
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useLocation, useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { createTheme } from '@mui/material/styles';
+// import {Routes, Route} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-const pages = ['Arts&Humanities', 'Engineering&Tech', 'Life Sciences&Medicine','Natural Sciences', 'Social Sciences'];
-const settings = ['Profile', 'Account', 'My NFT', 'Logout'];
+const pages = [{label: "Type1", value:"/market"},{label: "Type2", value:"/Type1"},{label: "Type3", value:"/Type1"},{label: "Type4", value:"/Type1"}];
+const settings = [{label: "구매목록", value:"/구매목록"},{label: "결제", value:"/결제"},{label: "계정정보", value:"/계정정보"},{label: "로그아웃", value:"/로그아웃"}];
 
-const ResponsiveAppBar = (props) => {
+
+function ResponsiveAppBar() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+
+  // const handleOpenNavMenu = (event) => {
+
+  //   setAnchorElNav(event.currentTarget);
+  // };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-  const theme1 = createTheme({
-    palette: {
-      primary: {
-        light: '#757ce8',
-        main: '#3f50b5',
-        dark: '#002884',
-        contrastText: '#fff',
-      },
-      secondary: {
-        light: '#ff7961',
-        main: '#f44336',
-        dark: '#ba000d',
-        contrastText: '#000',
-      },
-    },
-  });
-
   return (
-    <AppBar position="static">
+    <AppBar sx={{bgcolor:"black"}} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -56,17 +55,16 @@ const ResponsiveAppBar = (props) => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            전공
+            MAJOR
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -75,7 +73,7 @@ const ResponsiveAppBar = (props) => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-            <MenuIcon />
+              <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -95,41 +93,52 @@ const ResponsiveAppBar = (props) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page,index) => (
-                <MenuItem key={page} onClick={()=>props.setInd(index)}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {pages.map((page) => (
+                <Typography textAlign="center" onClick={() => {navigate("/market")}}>{page.label}영진
+                </Typography>
+                // <Link to={page.value}>
+                //   <Typography textAlign="center">{page.label}
+                //   </Typography>
+                // </Link>
               ))}
+              
+              
             </Menu>
-          </Box>
+          </Box> */}
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            전공
+            Major
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page,index) => (
-              <Button
-                key={page}
-                onClick={()=>props.setInd(index)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+            {pages.map((page) => (
+              // <Link to={page.value}>
+                <Button
+                  // key={page.label}
+                  // onClick={handleCloseNavMenu}
+                  onClick={() => {
+                    console.log('navigate');
+                    navigate("/market");
+                    console.log(location);
+                  }}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.label}
+                </Button>
+              // </Link>
             ))}
           </Box>
 
@@ -155,9 +164,12 @@ const ResponsiveAppBar = (props) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting,index) => (
-                <MenuItem key={setting} onClick={()=>props.setInd(index)}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {settings.map((setting) => (
+                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+                  <Link to={setting.value}>
+                  <Typography textAlign="center">{setting.label}
+                  </Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -166,6 +178,5 @@ const ResponsiveAppBar = (props) => {
       </Container>
     </AppBar>
   );
-};
-
+}
 export default ResponsiveAppBar;

@@ -1,7 +1,8 @@
-import { Selfintroduceform } from "components/myPage";
+import { Selfintroshowform } from "components/myPage";
 import React, { useState } from "react";
+import axios from "axios";
 
-const SelfIntroduce = () => {
+const SelfintroShow = () => {
   const [J_cards, setJ_cards] = useState([
     {
       date: 21,
@@ -27,9 +28,9 @@ const SelfIntroduce = () => {
 
   const getJ_cards = async() => {
     await axios
-      .post("api/profile/selfintroduce")
+      .post("api/profile/selfintroduce", J_cards)
       .then((response) => {
-        setJ_cards(response);
+        console.log(response);
       })
       .catch((Error) => {
         console.log(Error);
@@ -37,7 +38,8 @@ const SelfIntroduce = () => {
   };
 
 
-  return <Selfintroduceform J_cards={J_cards} />;
+
+  return <Selfintroshowform J_cards={J_cards} getJ_cards={getJ_cards} />;
 };
 
-export default SelfIntroduce;
+export default SelfintroShow;

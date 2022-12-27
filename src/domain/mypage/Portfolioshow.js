@@ -1,14 +1,18 @@
 import { Portfolioshowform } from "components/myPage";
 import React, { useState } from "react";
+import axios from "axios";
 
 const Portfolioshow = () => {
-  const [J_profile, setJ_profile] = useState({
+  const [J_profile, setJ_profile] = useState(
+    {
     name: "기린이",
     age: 19,
     education: "POSTECH 재학",
     major: "컴퓨터공학과",
-    selfintro: "여기는 어떤 글인가요 자신에 대한 소개인가요~",
-  });
+    contents: "여기는 어떤 글인가요 자신에 대한 소개인가요~",
+  }
+  );
+
   const [J_selfs, setJ_selfs] = useState([
     {
       enrollyear: "19",
@@ -29,17 +33,25 @@ const Portfolioshow = () => {
   ]);
 
   const getJ_profile = async() => {
-    await axios
-      .post("api/profile/portfolio")
-      .then((response) => {
-        setJ_profile(response);
-      })
-      .catch((Error) => {
-        console.log(Error);
-      });
-  };
+    await axios ({
+      method: 'post',
+      url: '/api/nft',
+      data: {
+        profile: J_profile, 
+        self: J_selfs,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((Error) => {
+      console.log(Error);
+    });
+  }; 
 
-  return <Portfolioshowform J_profile={J_profile} J_selfs={J_selfs} />;
+
+
+  return <Portfolioshowform J_profile={J_profile} J_selfs={J_selfs} getJ_profile={getJ_profile}/>;
 };
 
 export default Portfolioshow;

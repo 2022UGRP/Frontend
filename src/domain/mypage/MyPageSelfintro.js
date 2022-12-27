@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Mypageregisterform } from '../../components/myPage'
+import { Mypageselfintroform } from '../../components/myPage';
+import { useCookies } from 'react-cookie';
 
-const MyPageRegister = () => {
+const MyPageSelfintro = () => {
+  const [cookies] = useCookies(['loginkey']);
   const [items, setItems] = useState({
     'place': undefined,
     'selfintro': undefined,
@@ -24,18 +26,21 @@ const MyPageRegister = () => {
     }
   }, [items])
 
-  const navigate = useNavigate();
-  const registerHandler = async() => {
-    const formData = new FormData();
-    formData.append('activity', items.activity);
-    formData.append('selfintro', items.selfintro);
+  const [startdate, setStartDate] = useState(new Date());
 
-    const config = {
-        headers: {
-            "content-type": "multipart/form-data"
-        }
-    };
-    await axios.post("/api/profile/portfolio", formData, config).then((response)=>{
+  const navigate = useNavigate();
+
+  const registerHandler = async() => {
+    await axios ({
+      method: 'post',
+      url: `/api/selfintro/${cookies.loginkey}`,
+      data: {
+        title: items.place,
+        date: startdate,
+        contents: items.selfintro,
+      }
+    })
+    .then((response)=>{
         console.log(response);
         navigate('/main');
     }).catch((Error)=>{
@@ -44,11 +49,14 @@ const MyPageRegister = () => {
   };
 
   return (
-    <Mypageregisterform
+    <Mypageselfintroform
       activate={activate}
       changeEssayHandler={changeEssayHandler}
-      registerHandler={registerHandler}/>
+      registerHandler={registerHandler}
+      setStartDate={setStartDate}  
+      startdate={startdate}
+    />
   );
 }
 
-export default MyPageRegister
+export default MyPageSelfintro;

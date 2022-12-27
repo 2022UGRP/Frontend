@@ -4,8 +4,10 @@ import EssayQuestion from './EssayQuestion'
 import { Button } from '@mui/material'
 import Aftertopfixed from 'components/fixed/Aftertopfixed';
 import Bottomfixed from 'components/fixed/Bottomfixed';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const Mypageregisterform = (props) => {
+const Mypageselfintroform = (props) => {
   return (
     <div>
       <Aftertopfixed/>
@@ -14,11 +16,20 @@ const Mypageregisterform = (props) => {
         자기소개서 등록
         </p>
         <div>
+          
           <EssayQuestion 
             pname='place'
             question="어디에 합격한 자기소개서 글인가요?"
             changeEssayHandler={props.changeEssayHandler}/>
-
+            <h2>합격 날짜를 선택해 주세요</h2>
+            <DatePicker 
+                dateFormat="yyyy년 MM월 dd일"
+                selected = {props.startdate} 
+                onChange={date => props.setStartDate(date)}
+                selectsStart
+                startDate={props.startdate}
+                endDate={props.enddate}
+            />
           <EssayQuestion 
             pname='selfintro'
             question="자기소개서 입력"
@@ -36,4 +47,4 @@ const Mypageregisterform = (props) => {
   );
 }
 
-export default Mypageregisterform
+export default Mypageselfintroform;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import giraffe from "img/griaffe.png";
 import Aftertopfixed from "components/fixed/Aftertopfixed";
@@ -6,10 +6,10 @@ import Bottomfixed from "components/fixed/Bottomfixed";
 
 const Portfolioshowform = (props) => {
   const navigate = useNavigate();
-
   return (
     <div>
       <Aftertopfixed />
+      <button onClick={() => {props.getJ_profile()}}>버튼</button>
       <div className="J2-box">
         <div id="J2-body">
           {/* <img className="J2-img" src="images/giraffe_NFT.png" /> */}

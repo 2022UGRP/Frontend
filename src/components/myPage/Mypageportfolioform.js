@@ -23,7 +23,7 @@ const Mypageportfolioform = (props) => {
 
         <EssayQuestion 
           pid='self_intro'
-          pname='selfintro'
+          pname='contents'
           question="상세설명을 입력하세요"
           changeEssayHandler={props.changeEssayHandler}/>
 

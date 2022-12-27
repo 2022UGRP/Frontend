@@ -1,5 +1,6 @@
-import { Marketmainform } from 'components/market';
+import { Marketmainform, ResponsiveAppBar, TitlebarImageList1 } from 'components/market';
 import React, {useState} from 'react';
+import Aftertopfixed from 'components/fixed/Aftertopfixed.js';
 
 const MarketMain = () => {
 
@@ -11,9 +12,14 @@ const MarketMain = () => {
     });
   
   return (
-    <Marketmainform
+    <>
+    {/* <Marketmainform
       market={market}
-    />
+    /> */}
+    <Aftertopfixed/>
+    <ResponsiveAppBar/>
+    <TitlebarImageList1/>
+    </>
   )
 }
 

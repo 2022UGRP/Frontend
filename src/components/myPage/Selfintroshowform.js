@@ -3,7 +3,7 @@ import Bottomfixed from "components/fixed/Bottomfixed";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Selfintroduceform = (props) => {
+const Selfintroshowform = (props) => {
   const navigate = useNavigate();
 
   return (
@@ -43,4 +43,4 @@ const Selfintroduceform = (props) => {
   );
 };
 
-export default Selfintroduceform;
+export default Selfintroshowform;
