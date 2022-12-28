@@ -17,7 +17,7 @@ const Signupform = (props) => {
 
   return (
     <>
-      <Grid className="login_container" container direction="column" justifyContent="center" alignItems="center" width="30vw" height="60vh">
+      <Grid className="login_container" container direction="column" justifyContent="center" alignItems="center" width="30vw" height="70vh">
           <Grid item>
               <h2>회원가입</h2>
           </Grid>
@@ -88,6 +88,39 @@ const Signupform = (props) => {
                       id="standard-adornment-Phone number"
                       value={props.signup.phoneNumber}
                       name='phoneNumber'
+                      onChange={props.handleChangeSignup}
+                  />
+              </FormControl>
+          </Grid>
+          <Grid item>
+              <FormControl variant="standard" fullWidth>
+                  <InputLabel htmlFor="standard-adornment-School">School</InputLabel>
+                  <Input
+                      id="standard-adornment-School"
+                      value={props.signup.school}
+                      name='school'
+                      onChange={props.handleChangeSignup}
+                  />
+              </FormControl>
+          </Grid>
+          <Grid item>
+              <FormControl variant="standard" fullWidth>
+                  <InputLabel htmlFor="standard-adornment-Major">Major</InputLabel>
+                  <Input
+                      id="standard-adornment-Major"
+                      value={props.signup.major}
+                      name='major'
+                      onChange={props.handleChangeSignup}
+                  />
+              </FormControl>
+          </Grid>
+          <Grid item>
+              <FormControl variant="standard" fullWidth>
+                  <InputLabel htmlFor="standard-adornment-Age">Age</InputLabel>
+                  <Input
+                      id="standard-adornment-Age"
+                      value={props.signup.age}
+                      name='Age'
                       onChange={props.handleChangeSignup}
                   />
               </FormControl>
