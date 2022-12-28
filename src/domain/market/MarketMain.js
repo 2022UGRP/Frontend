@@ -17,7 +17,12 @@ const MarketMain = () => {
       market={market}
     /> */}
     <Aftertopfixed/>
-    <ResponsiveAppBar/>
+    <div style={{
+      height: '10px',
+      width: '100vw',
+      background: 'black'
+    }} />
+    {/* <ResponsiveAppBar/> */}
     <TitlebarImageList1/>
     </>
   )

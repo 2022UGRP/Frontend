@@ -120,7 +120,7 @@ const Signupform = (props) => {
                   <Input
                       id="standard-adornment-Age"
                       value={props.signup.age}
-                      name='Age'
+                      name='age'
                       onChange={props.handleChangeSignup}
                   />
               </FormControl>

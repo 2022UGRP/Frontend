@@ -46,7 +46,7 @@ const RecipeReviewCard = (props) => {
       <CardMedia
         component="img"
         height="150"
-        image="logo192.png"
+        image="../src/img/1.png"
         alt="Paella dish"
       />
       <CardContent>
