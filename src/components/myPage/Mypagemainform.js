@@ -6,9 +6,9 @@ import Aftertopfixed from 'components/fixed/Aftertopfixed';
 import Bottomfixed from 'components/fixed/Bottomfixed';
 import { useCookies } from 'react-cookie';
 
-const Mypagemainform = () => {
+const Mypagemainform = (props) => {
     const navigate = useNavigate();
-    const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major']);
+    const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
     return (
         <div>
             <Aftertopfixed />
@@ -34,7 +34,10 @@ const Mypagemainform = () => {
                         <img src={giraffe} className="mainimg components" alt="lowlogo" />
                         <h2 className="components">{cookies.name}</h2>
                         <div className="components">나이: {cookies.age}세, 최종학력: {cookies.school} / {cookies.major}</div>
-                        <Button variant="outlined" className="components" onClick={() => { navigate('/mypage/detail') }}>포트폴리오 상세보기</Button>
+                        { cookies.portfoliokey
+                        ?<Button variant="outlined" className="components" onClick={() => { navigate('/mypage/detail') }}>포트폴리오 상세보기</Button>
+                        :<Button variant="outlined" className="components" onClick={() => { props.handleClickPortfolioMake() }}>포트폴리오 생성</Button>
+                        }
                     </div>
                 </Box>
             </div>
