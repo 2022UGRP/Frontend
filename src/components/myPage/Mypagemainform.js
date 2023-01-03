@@ -86,7 +86,7 @@ const Mypagemainform = (props) => {
                     <div className="components">2. 2022-07-21 판매</div>
                 </Box>
             </div>
-            <Bottomfixed />
+            {/* <Bottomfixed /> */}
         </div>
     )
 }

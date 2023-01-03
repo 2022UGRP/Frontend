@@ -47,7 +47,7 @@ function Afteraboutusform() {
             style={{ marginLeft: '10px', backgroundColor: 'white' }} />
         </div>
       </div>
-      <Bottomfixed />
+      {/* <Bottomfixed /> */}
     </div>
   )
 };

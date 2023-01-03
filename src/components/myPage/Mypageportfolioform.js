@@ -34,7 +34,7 @@ const Mypageportfolioform = (props) => {
         </div>
       </div>
     </div>
-    <Bottomfixed/>
+    {/* <Bottomfixed/> */}
   </>
   )
 }

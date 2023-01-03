@@ -5,7 +5,7 @@ import { Mypageselfintroform } from '../../components/myPage';
 import { useCookies } from 'react-cookie';
 
 const MyPageSelfintro = () => {
-  const [cookies] = useCookies(['loginkey']);
+  const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
   const [items, setItems] = useState({
     'place': undefined,
     'selfintro': undefined,
@@ -33,7 +33,7 @@ const MyPageSelfintro = () => {
   const registerHandler = async() => {
     await axios ({
       method: 'post',
-      url: `/api/selfintro/${cookies.loginkey}`,
+      url: `/api/selfintro/${cookies.portfoliokey}`,
       data: {
         title: items.place,
         date: startdate,
@@ -42,7 +42,7 @@ const MyPageSelfintro = () => {
     })
     .then((response)=>{
         console.log(response);
-        navigate('/main');
+        navigate('/mypage/detail');
     }).catch((Error)=>{
         console.log(Error);
     })

@@ -4,9 +4,11 @@ import giraffe from "img/griaffe.png";
 import { useNavigate } from 'react-router-dom';
 import Aftertopfixed from 'components/fixed/Aftertopfixed';
 import Bottomfixed from 'components/fixed/Bottomfixed';
+import { useCookies } from 'react-cookie';
 
-const Mypagedetailform = () => {
+const Mypagedetailform = (props) => {
     const navigate = useNavigate();
+    const [cookies, ] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
     return (
     <div className = "background">
         <Aftertopfixed/>
@@ -30,8 +32,23 @@ const Mypagedetailform = () => {
          >
             <div className="box">
                 <img src={giraffe} className="mainimg components" alt="lowlogo"/>
-                <h2 className="components">기린이</h2>
-                <div className="components">나이: 21세, 최종학력: 포항공과대학교/ 생명과학부</div>
+                <h2 className="components">{cookies.name}</h2>
+                        <div className="components">나이: {cookies.age}세, 최종학력: {cookies.school} / {cookies.major}</div>
+            </div>
+            <div className="box">
+                <p>포트폴리오 구성요소</p>
+                {props.elementDatas.map((v,) => {
+                    return `${v.Activity}: ${v.Contents}`
+                })}
+                <p>자기소개서</p>
+                {props.selfintroDatas.map((v,) => {
+                    const date = new Date(v.Date);
+                    const y = date.getFullYear();
+                    const m = date.getMonth() + 1;
+                    const d = date.getDate();
+
+                    return v.Title + `(${y}.${m}.${d}): ` + v.Contents;
+                })}
             </div>
             <Box
                 className = 'boxComponent'
@@ -50,19 +67,16 @@ const Mypagedetailform = () => {
                 fontWeight: '700',
                 }}
             >
-                <h3 className="components">포트폴리오 구성 요소 관리</h3>
-                <Button variant="outlined" className="components" onClick={()=>{navigate('/mypage/portfolio')}}>추가</Button>
-                <Button variant="outlined" className="components" onClick={()=>{navigate('/mypage/portfolio')}}>수정</Button>
             </Box>
         </Box>
         </div>
 
         <div className = "underBox">
+            <Button variant="outlined" className="components" onClick={()=>{navigate('/mypage/portfolio')}}>포트폴리오 구성요소 추가</Button>
             <Button variant="outlined" className="buttons" onClick={()=>{navigate('/mypage/selfintro')}}>자기소개서 등록</Button>
-            <Button variant="outlined" className="buttons" onClick={()=>{navigate('/mypage/selfintro')}}>자기소개서 보기</Button>
             <Button variant="outlined" className="buttons" onClick={()=>{navigate('/mypage/selfintro')}}>NFT 발행</Button>
         </div>
-        <Bottomfixed/>
+        {/* <Bottomfixed/> */}
     </div>
   )
 }

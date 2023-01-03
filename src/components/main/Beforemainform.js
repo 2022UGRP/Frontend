@@ -14,7 +14,7 @@ const Beforemainform = () => {
         <h1>Welcome to NFT-I</h1>
         <div>Create your own NFT and discover them!</div>
       </div>
-      <Bottomfixed/>
+      {/* <Bottomfixed/> */}
     </div>
   )
 };

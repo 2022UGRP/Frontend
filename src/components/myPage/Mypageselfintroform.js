@@ -42,7 +42,7 @@ const Mypageselfintroform = (props) => {
           </div>
         </div>
       </div>
-      <Bottomfixed/>
+      {/* <Bottomfixed/> */}
     </div>
   );
 }

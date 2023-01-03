@@ -38,7 +38,7 @@ const Selfintroshowform = (props) => {
           </div>
         </div>
       </div>
-      <Bottomfixed />
+      {/* <Bottomfixed /> */}
     </div>
   );
 };

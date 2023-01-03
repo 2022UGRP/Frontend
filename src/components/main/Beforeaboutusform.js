@@ -23,7 +23,7 @@ function Beforeaboutusform() {
         자유롭게 포트폴리오를 관리 및 거래하고 다른 학생들의 포트폴리오를 둘러보면서 필요한 대외활동, 인턴십, 등에 대한 정보를 얻을 수 있는 경험을 체험해보세요.
         </div>
       </div>
-      <Bottomfixed/>
+      {/* <Bottomfixed/> */}
     </div>
   )
 };

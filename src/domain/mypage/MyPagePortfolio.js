@@ -5,7 +5,7 @@ import { Mypageportfolioform } from '../../components/myPage'
 import { useCookies } from 'react-cookie';
 
 const MyPagePortfolio = () => {
-  const [cookies] = useCookies(['loginkey']);
+  const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
   const items = {
       '능력과 자격': ['언어능력', '자격증(민간, 국가공인)'],
       '학력': ['성적 및 학점', '전공 및 학교'],
@@ -53,7 +53,7 @@ const MyPagePortfolio = () => {
   const registerHandler = async() => {
     await axios ({
       method: 'post',
-      url: `/api/element/${cookies.loginkey}`,
+      url: `/api/element/${cookies.portfoliokey}`,
       data: {
         activity: portfolio.activity,
         contents: portfolio.contents,
@@ -61,7 +61,7 @@ const MyPagePortfolio = () => {
     })
     .then((response)=>{
         console.log(response);
-        navigate('/main');
+        navigate('/mypage/detail');
     }).catch((Error)=>{
         console.log(Error);
     })
