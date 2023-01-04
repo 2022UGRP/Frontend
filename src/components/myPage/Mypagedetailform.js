@@ -74,7 +74,7 @@ const Mypagedetailform = (props) => {
         <div className = "underBox">
             <Button variant="outlined" className="components" onClick={()=>{navigate('/mypage/portfolio')}}>포트폴리오 구성요소 추가</Button>
             <Button variant="outlined" className="buttons" onClick={()=>{navigate('/mypage/selfintro')}}>자기소개서 등록</Button>
-            <Button variant="outlined" className="buttons" onClick={()=>{navigate('/mypage/selfintro')}}>NFT 발행</Button>
+            <Button variant="outlined" className="buttons" onClick={props.mint}>NFT 발행</Button>
         </div>
         {/* <Bottomfixed/> */}
     </div>
