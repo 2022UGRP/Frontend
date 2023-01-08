@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MypageNFTmintform } from '../../components/myPage';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
 const MyPageNFTmint = () => {
-  const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
+  const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState(cookies.image);
 
-  const handleClickNFTMake = async () => {
+  const handleClickNFTMint = async () => {
+    console.log('click')
     const body = {
       address: window.ethereum.selectedAddress
     };
@@ -23,10 +26,24 @@ const MyPageNFTmint = () => {
       .catch(e => console.log(e));
   };
 
+  const getNFTInfo = async () => {
+    await axios.get(`/api/nft/info/${cookies.portfoliokey}`)
+      .then(res => {
+        setDescription(res.data.description);
+        setImage(res.data.image);
+      })
+      .catch(e => console.log(e))
+  };
+  
+  useEffect(() => {
+    getNFTInfo();
+  }, []);
+
   return (
     <MypageNFTmintform
-    handleClickNFTMake={handleClickNFTMake}
-    />
+      image={image}
+      description={description}
+      handleClickNFTMint={handleClickNFTMint} />
   )
 };
 

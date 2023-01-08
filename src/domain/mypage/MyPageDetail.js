@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Mypagedetailform } from 'components/myPage';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const MyPageDetail = () => {
+  const navigate = useNavigate();
   const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
 
   const [elementDatas, setElementDatas] = useState([{
@@ -33,6 +35,18 @@ const MyPageDetail = () => {
       })
   };
 
+  const handleNFTMake = async () => {
+    const body = {
+      portfoliokey: cookies.portfoliokey
+    };
+    await axios.put('/api/nft/create', body)
+      .then(res => {
+        console.log(res.data)
+        navigate('/mypage/NFTmint');
+      })
+      .catch(e => console.log(e));
+  };
+
   useEffect(() => {
     if (cookies.portfoliokey) {
       loadPortfolio();
@@ -45,6 +59,7 @@ const MyPageDetail = () => {
     <Mypagedetailform
       elementDatas={elementDatas}
       selfintroDatas={selfintroDatas}
+      handleNFTMake={handleNFTMake}
     />
   )
 }

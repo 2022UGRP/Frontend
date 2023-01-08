@@ -97,7 +97,7 @@ const Mypagedetailform = (props) => {
                 width: '70%',
                 alignSelf: 'center',
                 marginTop: 15,
-            }} onClick={()=>{navigate('/mypage/NFTmint')}}>NFT 발행</Button>
+            }} onClick={props.handleNFTMake}>NFT 발행</Button>
         </Box>
         </div>
         {/* <Bottomfixed/> */}

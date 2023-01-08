@@ -4,7 +4,7 @@ import {Box, Button} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
-const MypageNFTmintform = () => {
+const MypageNFTmintform = (props) => {
   const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
   const navigate = useNavigate();
 
@@ -35,15 +35,19 @@ const MypageNFTmintform = () => {
             alignItems: 'center'
         }}>
             <div className="box">
-                <img src={cookies.image} className="mainimg components" alt="lowlogo"/>
+                <img src={props.image} className="mainimg components" alt="lowlogo"/>
                 <h2 className="components">{cookies.name}</h2>
+            </div>
+
+            <div>
+                {props.description}
             </div>
 
             <Button variant="outlined" style={{
                 width: '70%',
                 alignSelf: 'center',
                 marginTop: 15,
-            }} onClick={()=>{navigate('/mypage/NFTmint')}}>NFT 발행</Button>
+            }} onClick={props.handleClickNFTMint}>NFT 발행</Button>
         </Box>
         </div>
     </div>
