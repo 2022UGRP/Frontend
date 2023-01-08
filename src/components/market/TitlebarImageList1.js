@@ -24,7 +24,7 @@ import img2 from 'img/2.png';
 // import { maxWidth, sizeWidth } from '@mui/system';
 
 
-export default function TitlebarImageList1() {
+const TitlebarImageList1 = (props) => {
   const navigate=useNavigate();
   const move = (ind) => {
     navigate(`/market/elements/${itemData[ind].title}`,{
@@ -85,6 +85,8 @@ export default function TitlebarImageList1() {
     </ImageList>
   );
 }
+
+export default TitlebarImageList1;
 
 const itemData = [
   {
@@ -281,3 +283,4 @@ const itemData = [
     ],
   },
 ];
+

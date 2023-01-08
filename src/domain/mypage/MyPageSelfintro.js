@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mypageselfintroform } from '../../components/myPage';
 import { useCookies } from 'react-cookie';

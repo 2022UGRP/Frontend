@@ -29,7 +29,7 @@ const Mypageportfolioform = (props) => {
 
         <div style={{textAlign: 'center', margin: 'auto'}}>
           <Button variant='outlined' onClick={props.registerHandler} disabled={props.activate}>
-          자기소개서 등록
+          포트폴리오 등록
           </Button>
         </div>
       </div>

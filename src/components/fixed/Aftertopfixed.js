@@ -7,9 +7,15 @@ import { useCookies } from "react-cookie";
 function Aftertopfixed() {
   const navigate = useNavigate();
 
-  const [cookies, , removeCookies] = useCookies(['loginkey']);
+  const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
   const handleClickLogOut = () => {
-    removeCookies('loginkey');
+    removeCookies('loginkey', { path: '/' });
+    removeCookies('portfoliokey', { path: '/' });
+    removeCookies('name', { path: '/' });
+    removeCookies('age', { path: '/' });
+    removeCookies('school', { path: '/' });
+    removeCookies('major', { path: '/' });
+    removeCookies('image', { path: '/' });
     navigate('/');
   }
 

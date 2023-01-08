@@ -79,4 +79,4 @@ const MyPagePortfolio = () => {
   );
 }
 
-export default MyPagePortfolio
+export default MyPagePortfolio;

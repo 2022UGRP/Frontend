@@ -1,6 +1,5 @@
-export { default as MyPageMain } from './MyPageMain'
-export { default as MyPageDetail } from './MyPageDetail'
-export { default as MyPagePortfolio } from './MyPagePortfolio'
-export { default as MyPageSelfintro } from './MyPageSelfintro'
-export { default as SelfintroShow } from './SelfintroShow'
-export { default as Portfolioshow } from './Portfolioshow'
+export { default as MyPageMain } from './MyPageMain';
+export { default as MyPageDetail } from './MyPageDetail';
+export { default as MyPagePortfolio } from './MyPagePortfolio';
+export { default as MyPageSelfintro } from './MyPageSelfintro';
+export { default as MyPageNFTmint } from './MyPageNFTmint';

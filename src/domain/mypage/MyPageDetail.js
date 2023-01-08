@@ -33,23 +33,6 @@ const MyPageDetail = () => {
       })
   };
 
-  const mint = async () => {
-    const body = {
-      address: window.ethereum.selectedAddress
-    };
-    console.log(window.ethereum.selectedAddress);
-    await axios.post('/api/nft/mint', body)
-      .then(async res => {
-        const txHash = await window.ethereum.request({
-          method: "eth_sendTransaction",
-          params: [res.data.param],
-        });
-
-        console.log("https://goerli.etherscan.io/tx/" + txHash);
-      })
-      .catch(e => console.log(e));
-  }
-
   useEffect(() => {
     if (cookies.portfoliokey) {
       loadPortfolio();
@@ -62,7 +45,6 @@ const MyPageDetail = () => {
     <Mypagedetailform
       elementDatas={elementDatas}
       selfintroDatas={selfintroDatas}
-      mint={mint}
     />
   )
 }

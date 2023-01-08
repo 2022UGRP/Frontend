@@ -70,17 +70,35 @@ const SignUp = () => {
                 "content-type": "multipart/form-data"
             }
         }
-        await axios.post("/api/users/signup", formData, config).then((res) => {
-            console.log(res);
-            setCookie("loginkey", res.data.Id, { path: '/' });
-            setCookie("name", res.data.Name, { path: '/' });
-            setCookie("age", res.data.Age, { path: '/' });
-            setCookie("school", res.data.School, { path: '/' });
-            setCookie("major", res.data.Major, { path: '/' });
-            navigate('/main');
-        }).catch((Error) => {
-            console.log(Error);
-        })
+
+        await axios.post("/api/users/signup", formData, config)
+            .then(async (res) => {
+                console.log(res);
+                setCookie("loginkey", res.data.Id, { path: '/' });
+                setCookie("name", res.data.Name, { path: '/' });
+                setCookie("age", res.data.Age, { path: '/' });
+                setCookie("school", res.data.School, { path: '/' });
+                setCookie("major", res.data.Major, { path: '/' });
+                navigate('/main');
+
+                await axios({
+                    method: 'post',
+                    url: `/api/portfolio/${res.data.Id}`,
+                })
+                    .then(async (response) => {
+                        console.log(response);
+                        await axios.put(`/api/nft/default/${response.data.Id}`)
+                            .then(res => {
+                                setCookie('image', res.data.image);
+                                setCookie("portfoliokey", response.data.Id, { path: '/' });
+                            })
+                    })
+                    .catch((Error)=>{
+                        console.log(Error);
+                    })
+            }).catch((Error) => {
+                console.log(Error);
+            })
     };
     return (
         <Signupform
