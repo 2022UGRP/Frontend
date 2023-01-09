@@ -22,6 +22,7 @@ const MyPageNFTmint = () => {
         });
 
         console.log("https://goerli.etherscan.io/tx/" + txHash);
+        alert('Success Mint!!');
       })
       .catch(e => console.log(e));
   };

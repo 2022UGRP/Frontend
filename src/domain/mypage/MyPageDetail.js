@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Mypagedetailform } from 'components/myPage';
 import { useCookies } from 'react-cookie';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const MyPageDetail = () => {
   const navigate = useNavigate();
-  const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
+  const [cookies, setCookie,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
 
   const [elementDatas, setElementDatas] = useState([{
     Activity: '',
@@ -24,34 +24,29 @@ const MyPageDetail = () => {
       method: 'get',
       url: `/api/portfolio/${cookies.portfoliokey}`,
     })
-      .then((response) => {
-        console.log('response')
-        console.log(response.data)
-        setElementDatas(response.data.elementDatas);
-        setSelfintroDatas(response.data.selfintroDatas);
+      .then((res) => {
+        console.log('res')
+        console.log(res.data)
+        setElementDatas(res.data.elementDatas);
+        setSelfintroDatas(res.data.selfintroDatas);
+        setCookie('image', res.data.image);
       })
       .catch((Error) => {
         console.log(Error);
       })
   };
 
-  const handleNFTMake = async () => {
-    const body = {
-      portfoliokey: cookies.portfoliokey
-    };
-    await axios.put('/api/nft/create', body)
-      .then(res => {
-        console.log(res.data)
-        navigate('/mypage/NFTmint');
-      })
-      .catch(e => console.log(e));
-  };
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     console.log('focus');
+  //     if (cookies.portfoliokey) {
+  //       loadPortfolio();
+  //     }
+  //   }, []));
 
   useEffect(() => {
     if (cookies.portfoliokey) {
       loadPortfolio();
-    } else {
-      console.log('포트폴리오 없음');
     }
   }, []);
 
@@ -59,7 +54,6 @@ const MyPageDetail = () => {
     <Mypagedetailform
       elementDatas={elementDatas}
       selfintroDatas={selfintroDatas}
-      handleNFTMake={handleNFTMake}
     />
   )
 }
