@@ -22,7 +22,17 @@ const MyPageNFTmint = () => {
         });
 
         console.log("https://goerli.etherscan.io/tx/" + txHash);
-        alert('Success Mint!!');
+
+        await axios.put(`/api/nft/mint/success/${cookies.portfoliokey}`, {
+          address: window.ethereum.selectedAddress,
+          title: ''
+        })
+          .then(res => {
+            console.log(res.data);
+            alert('Success Mint!!');
+          })
+          .catch(e => console.log(e));
+
       })
       .catch(e => console.log(e));
   };
@@ -35,7 +45,7 @@ const MyPageNFTmint = () => {
       })
       .catch(e => console.log(e))
   };
-  
+
   useEffect(() => {
     getNFTInfo();
   }, []);
