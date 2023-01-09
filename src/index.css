@@ -252,3 +252,18 @@ footer{
   flex-direction: row;
   justify-content: space-between;
 }
+
+.NFTdetail{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NFTdetail > h2{
+  margin-right: 10px;
+}
+
+.NFTbox{
+  margin-top: 35px;
+  margin-bottom: 35px;
+}

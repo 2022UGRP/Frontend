@@ -2,16 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { MypageNFTmintform } from '../../components/myPage';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const MyPageNFTmint = () => {
+  const navigate = useNavigate();
   const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(cookies.image);
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+
+  const handleChangeNFTtitle = (event) => {
+    setTitle(event.target.value);
+  };
+  const handleChangeNFTprice = (event) => {
+    setPrice(event.target.value);
+  };
 
   const handleClickNFTMint = async () => {
     console.log('click')
     const body = {
-      address: window.ethereum.selectedAddress
+      address: window.ethereum.selectedAddress,
+      title: title,
+      price: price,
     };
     console.log(window.ethereum.selectedAddress);
     await axios.put(`/api/nft/mint/${cookies.portfoliokey}`, body)
@@ -25,11 +38,15 @@ const MyPageNFTmint = () => {
 
         await axios.put(`/api/nft/mint/success/${cookies.portfoliokey}`, {
           address: window.ethereum.selectedAddress,
-          title: ''
+          name: cookies.name,
+          title: title,
+          result: res.data.result,
+          tokenId: res.data.tokenId
         })
           .then(res => {
             console.log(res.data);
             alert('Success Mint!!');
+            navigate('/mypage/detail');
           })
           .catch(e => console.log(e));
 
@@ -53,8 +70,13 @@ const MyPageNFTmint = () => {
   return (
     <MypageNFTmintform
       image={image}
+      title={title}
+      price={price}
       description={description}
-      handleClickNFTMint={handleClickNFTMint} />
+      handleClickNFTMint={handleClickNFTMint}
+      handleChangeNFTtitle={handleChangeNFTtitle}
+      handleChangeNFTprice={handleChangeNFTprice}
+    />
   )
 };
 

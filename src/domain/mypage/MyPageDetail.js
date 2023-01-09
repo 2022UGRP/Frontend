@@ -29,7 +29,7 @@ const MyPageDetail = () => {
         console.log(res.data)
         setElementDatas(res.data.elementDatas);
         setSelfintroDatas(res.data.selfintroDatas);
-        setCookie('image', res.data.image);
+        setCookie('image', res.data.image, { path: '/' });
       })
       .catch((Error) => {
         console.log(Error);

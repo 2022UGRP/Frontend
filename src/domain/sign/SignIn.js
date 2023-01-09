@@ -36,6 +36,8 @@ const SignIn = () => {
                 setCookie('age', res.data.Age, { path: '/' });
                 setCookie('school', res.data.School, { path: '/' });
                 setCookie('major', res.data.Major, { path: '/' });
+                setCookie('image', res.data.Image, { path: '/' });
+                setCookie("portfoliokey", res.data.Portfolio_id, { path: '/' });
                 navigate('/main')
             }
         }).catch((Error) => {
