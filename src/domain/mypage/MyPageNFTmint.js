@@ -10,7 +10,7 @@ const MyPageNFTmint = () => {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(cookies.image);
   const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState(0);
 
   const handleChangeNFTtitle = (event) => {
     setTitle(event.target.value);
@@ -41,7 +41,8 @@ const MyPageNFTmint = () => {
           name: cookies.name,
           title: title,
           result: res.data.result,
-          tokenId: res.data.tokenId
+          tokenId: res.data.tokenId,
+          price: price,
         })
           .then(res => {
             console.log(res.data);
