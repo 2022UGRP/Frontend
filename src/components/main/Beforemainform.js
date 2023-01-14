@@ -9,7 +9,6 @@ const Beforemainform = () => {
   
   return (
     <div className = "background">
-      <Beforetopfixed/>
       <div className="banner">
         <h1>Welcome to NFT-I</h1>
         <div>Create your own NFT and discover them!</div>

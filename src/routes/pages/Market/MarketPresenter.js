@@ -7,8 +7,7 @@ const MarketPresenter = () => {
     <Routes>
         <Route path="/tour" element={<MarketTour/>}/>
         <Route path="/" element={<MarketMain/>}/>
-        <Route path="/elements/:elementId" element={<MarketPurchase/>}/>
-        <Route path="/purchase" element={<MarketPurchase/>}/>
+        <Route path="/purchase/:NFT_id/:CopyrightHolder_id" element={<MarketPurchase/>}/>
         <Route path ="/open" element={<MarketPflioOpen/>}/>
         <Route path="/*" element={<NotFound/>}/>
     </Routes>

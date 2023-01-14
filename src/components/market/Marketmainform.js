@@ -1,105 +1,303 @@
-import React, {useState} from 'react';
-import ResponsiveAppBar from './ResponsiveAppBar.js';
-import RecipeReviewCard from './RecipeReviewCard.js';
-import { Grid, Box, Pagination} from '@mui/material';
-import Aftertopfixed from 'components/fixed/Aftertopfixed.js';
-import Bottomfixed from 'components/fixed/Bottomfixed.js';
+import * as React from 'react';
+import { ImageList, ImageListItem, ImageListItemBar, IconButton, Input, InputAdornment } from '@mui/material';
+import { Search, Info } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import img1 from 'img/1.png';
+import img2 from 'img/2.png';
 
 const Marketmainform = (props) => {
-  const [ind,setInd]=React.useState(0);
-  const [Recipe, setRecipe] = useState({
-    title:`${props.market.title}` ,
-    subheader: `${props.market.subheader}`,
-    suminfo: `${props.market.suminfo}`
+  const navigate=useNavigate();
+  const move = (ind) => {
+    navigate(`/market/elements/${itemData[ind].title}`,{
+      state:{
+        number: 1234,
+        nftlist: itemData[ind].nftlist,
+        title: itemData[ind].title,
+        author: itemData[ind].author,
+        label: itemData[ind].label
+      }
+    })
+  }
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event, i) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+    move(i);
+  };
 
-})
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popper' : undefined;
+
   return (
-    <>
-      <Aftertopfixed/>
-      <ResponsiveAppBar setInd={setInd} />
-      {ind}
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          height: '70%',
-          padding: '1%',
-        }}>
-        <Grid 
-          container rowSpacing={1} 
-          columnSpacing={{xs: 1, sm:2, md:3}}
-          alignItems="center"
-          justifyContent="center"
-          >
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-            <RecipeReviewCard
-              Recipe={Recipe}
+    <div>
+      <Input
+          style={{ width: '500px' }} 
+          id="standard-adornment-password Check"
+          placeholder='search items'
+          value={props.search}
+          name='search'
+          onChange={props.handleChangeSearch}
+          startAdornment={
+              <InputAdornment position="start">
+                  <IconButton><Search />
+                  </IconButton>
+              </InputAdornment>
+          }
+      />
+      <ImageList sx={{ width: '100%', height: '100%' }} cols={4}>
+        {props.NFTDatas.map((item, index) => (
+          <ImageListItem key={index} onClick={()=>navigate(`/market/purchase/${item.NFT_id}/${item.CopyrightHolder_id}`)}>
+            <img
+              src={item.Image}
+              alt={item.title}
+              loading="lazy"
             />
-          </Grid>s
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-            <RecipeReviewCard
-              Recipe={Recipe}
+            <ImageListItemBar
+              id={item.CopyrightHolder_id}
+              title={item.NFTtitle}
+              subtitle={item.NFTownerName}
+              // price={item.NFTprice}
+              actionIcon={
+                <div>
+                  <IconButton
+                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                    aria-label={`info about ${item.title}`}
+                    type="button" 
+                  >
+                    <Info />
+                  </IconButton>               
+                </div>
+              }
             />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
+          </ImageListItem>
+        ))}
+      </ImageList>
+      <ImageList sx={{ width: '100%', height: '100%' }} cols={4}>
+        {itemData.map((item, index) => (
+          <ImageListItem key={item.ind} onClick={(e) => handleClick(e, index)}>
+            <img
+              src={item.nftlist[0].img}
+              alt={item.title}
+              loading="lazy"
             />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
+            <ImageListItemBar
+              title={item.title}
+              subtitle={item.author}
+              actionIcon={
+                <div>
+                  <IconButton
+                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                    aria-label={`info about ${item.title}`}
+                    aria-describedby={id} type="button" 
+                  >
+                    <Info />
+                  </IconButton>               
+                </div>
+              }
             />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          height: '10%',
-          padding: '1%',
-        }}>
-        <Grid 
-          container rowSpacing={1} 
-          columnSpacing={{xs: 1, sm:2, md:3}}
-          alignItems="center"
-          justifyContent="center"
-          ><Pagination count={10} /></Grid>
-      </Box>
-      {/* <Bottomfixed/> */}
-    </>
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </div>
+
+
   );
-};
+}
 
 export default Marketmainform;
+
+const itemData = [
+  {
+    ind: 1,
+    title: 'Breakfast',
+    author: '@bkristastucchio',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 2,
+    title: 'Burger',
+    author: '@rollelflex_graphy726',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 3,
+    title: 'Camera',
+    author: '@helloimnik',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 4,
+    title: 'Coffee',
+    author: '@nolanissac',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 5,
+    title: 'Hats',
+    author: '@hjrc33',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 6,
+    title: 'Honey',
+    author: '@arwinneil',
+    featured: true,
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 7,
+    title: 'Basketball',
+    author: '@tjdragotta',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 8,
+    title: 'Fern',
+    author: '@katie_wasserman',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 9,
+    title: 'Mushrooms',
+    author: '@silverdalex',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 10,
+    title: 'Tomato basil',
+    author: '@shelleypauls',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 11,
+    title: 'Sea star',
+    author: '@peterlaster',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+  {
+    ind: 12,
+    title: 'Bike',
+    author: '@southside_customs',
+    label: "안녕하세요",
+    nftlist:[
+      {
+        img:img1,
+        profile:"2022.06.10",
+      },
+      {
+        img:img2,
+        profile:"2020.05.07",
+      },
+    ],
+  },
+];
+

@@ -3,14 +3,16 @@ import { MypageNFTmintform } from '../../components/myPage';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 const MyPageNFTmint = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(cookies.image);
   const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState(0);
 
   const handleChangeNFTtitle = (event) => {
     setTitle(event.target.value);
@@ -41,14 +43,18 @@ const MyPageNFTmint = () => {
           name: cookies.name,
           title: title,
           result: res.data.result,
-          tokenId: res.data.tokenId
+          tokenId: res.data.tokenId,
+          price: price,
         })
           .then(res => {
             console.log(res.data);
-            alert('Success Mint!!');
+            enqueueSnackbar('NFT 발행에 성공하였습니다', { variant: 'info' });
             navigate('/mypage/detail');
           })
-          .catch(e => console.log(e));
+          .catch(e => {
+            console.log(e)
+            enqueueSnackbar(`NFT 발행에 실패하였습니다`, { variant: 'error' });
+          });
 
       })
       .catch(e => console.log(e));
@@ -81,3 +87,4 @@ const MyPageNFTmint = () => {
 };
 
 export default MyPageNFTmint;
+

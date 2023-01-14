@@ -1,4 +1,4 @@
-import { Marketmainform, ResponsiveAppBar, TitlebarImageList1 } from 'components/market';
+import { ResponsiveAppBar, Marketmainform } from 'components/market';
 import React, {useState, useEffect} from 'react';
 import Aftertopfixed from 'components/fixed/Aftertopfixed.js';
 import axios from 'axios';
@@ -7,27 +7,24 @@ const MarketMain = () => {
 
   const [NFTDatas, setNFTDatas] = useState([
     {
-      NFTimg: '',     //NFT 발행시 생성
-      NFTDate: '',    //NFT 발행시 생성
-      NFTComment: '',    //NFT 발행시 달 수 있음 ex>삼성 최종합격 포트폴리오(Title?)
-      NFTPrice: '',      //NFT 발행시 달 수 있음           
+      NFT_id: '',         // NFT id
+      CopyrightHolder_id: '',        //NFT 저작권자 id
+      CopyrightHolderName: '',       //NFT 저작권자 이름
+
+      Image: '',          // NFT Image
+      NFTprice: '',       // NFT price
+      NFTtitle: '',       // NFT 제목
+      NFTownerName: '',   // NFT 소유한 사람 이름
     }
   ])
   
   const loadNFT = async () => {
-    await axios({
-      method: 'get',
-      url: `/api/portfolio/NFT`,
-    })
-      .then((response) => {
-        console.log('response');
-        console.log(response.data);
-        setNFTDatas(response.data);
-
+    await axios.get('/api/nft/market')
+      .then(res => {
+        console.log(res.data.nfts);
+        setNFTDatas(res.data.nfts);
       })
-      .catch((Error)=>{
-        console.log(Error);
-      })
+      .catch(e => console.log(e));
   }
   
   useEffect(()=>{
@@ -47,7 +44,9 @@ const MarketMain = () => {
       background: 'black'
     }} /> */}
     <ResponsiveAppBar/>
-    <TitlebarImageList1/>
+    <Marketmainform
+      NFTDatas={NFTDatas}
+    />
     </>
   )
 }
