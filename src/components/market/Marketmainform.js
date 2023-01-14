@@ -4,9 +4,6 @@ import { Search, Info } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import img1 from 'img/1.png';
 import img2 from 'img/2.png';
-import { yellow } from '@mui/material/colors';
-
-
 
 const Marketmainform = (props) => {
   const navigate=useNavigate();
@@ -48,13 +45,14 @@ const Marketmainform = (props) => {
       />
       <ImageList sx={{ width: '100%', height: '100%' }} cols={4}>
         {props.NFTDatas.map((item, index) => (
-          <ImageListItem key={index} onClick={()=>navigate(`/market/purchase/${item.NFT_id}/${item.Owner_id}`)}>
+          <ImageListItem key={index} onClick={()=>navigate(`/market/purchase/${item.NFT_id}/${item.CopyrightHolder_id}`)}>
             <img
               src={item.Image}
               alt={item.title}
               loading="lazy"
             />
             <ImageListItemBar
+              id={item.CopyrightHolder_id}
               title={item.NFTtitle}
               subtitle={item.NFTownerName}
               // price={item.NFTprice}
@@ -63,7 +61,7 @@ const Marketmainform = (props) => {
                   <IconButton
                     sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                     aria-label={`info about ${item.title}`}
-                    aria-describedby={id} type="button" 
+                    type="button" 
                   >
                     <Info />
                   </IconButton>               

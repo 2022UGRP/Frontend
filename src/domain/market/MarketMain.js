@@ -8,17 +8,18 @@ const MarketMain = () => {
   const [NFTDatas, setNFTDatas] = useState([
     {
       NFT_id: '',         // NFT id
-      Owner_id: '',       // NFT Owner id
-      
+      CopyrightHolder_id: '',        //NFT 저작권자 id
+      CopyrightHolderName: '',       //NFT 저작권자 이름
+
       Image: '',          // NFT Image
       NFTprice: '',       // NFT price
       NFTtitle: '',       // NFT 제목
-      NFTownerName: '',   // NFT 만든 사람 이름
+      NFTownerName: '',   // NFT 소유한 사람 이름
     }
   ])
   
   const loadNFT = async () => {
-    await axios.get('api/nft/market')
+    await axios.get('/api/nft/market')
       .then(res => {
         console.log(res.data.nfts);
         setNFTDatas(res.data.nfts);

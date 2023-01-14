@@ -57,6 +57,7 @@ body {
   min-height: 100vh;
   /* min-width: 1000px; */
   position: relative;
+  background-color: #ebe4dd;
 }
 
 .top{ 
@@ -91,10 +92,9 @@ body {
 }
 
 .banner{
-  background-color: rgba(231, 223, 215, 0.852);
   padding-left: 20%;
   padding-right: 20%;
-  padding-top: 50px;
+  padding-top: 30%;
   padding-bottom: 50px;
 }
 .banner > h1{

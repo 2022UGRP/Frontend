@@ -1,9 +1,13 @@
 import React from 'react'
-import Beforemainform from '../../components/main/Beforemainform'
+import Beforemainform from '../../components/main/Beforemainform';
+import Beforetopfixed from 'components/fixed/Beforetopfixed';
 
 function BeforeMain() {
   return (
-    <Beforemainform/>
+    <>
+      <Beforetopfixed/>
+      <Beforemainform/>
+    </>
   )
 }
 

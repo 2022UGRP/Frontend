@@ -83,7 +83,7 @@ const SignUp = () => {
 
                 await axios({
                     method: 'post',
-                    url: `/api/portfolio/${res.data.Id}`,
+                    url: `/api/portfolio/${res.data.Id}/${res.data.Name}`,
                 })
                     .then(async (response) => {
                         console.log(response);
