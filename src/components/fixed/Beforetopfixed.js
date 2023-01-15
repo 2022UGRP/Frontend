@@ -7,7 +7,7 @@ function Beforetopfixed() {
   return (
     <div className="header">
       <ul className="nav">
-        <img className="logo" src={logo} alt="React" onClick={()=>{navigate('/main')}}/>
+        <img className="logo" src={logo} alt="React" onClick={()=>{navigate('/')}}/>
         <div className="navbar" onClick={()=>{navigate('/aboutus')}}>About Us</div>
         <div className="navbar" onClick={()=>{navigate('/market/tour')}}>MarketTour</div>
       </ul>

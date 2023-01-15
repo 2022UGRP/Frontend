@@ -1,46 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Source+Serif+Pro:ital,wght@1,600&display=swap');
+
 body {
   margin: 0;
+  font-family: 'Nanum Gothic', sans-serif;
+  overflow: overlay;
 }
 
+ /* login */
+.login_div { 
+  border-top: 8px solid #D34658; 
+  box-shadow: 0px 6px 15.8px rgba(75, 75, 75, 0.23); 
+  margin-top: 80px; 
+  min-height: 700px; 
+  text-align: center; 
+  padding-top: 50px; 
+  padding-bottom: 50px;
+}
+.login_div > img { width: 120px; }
+.login_div > h1 { font-size: 28px; margin-top: 32px; margin-bottom: 72px; }
+.login_div > p { font-size: 15px; margin-top: 32px; margin-bottom: 24px; }
+.login_div > input { 
+  font-size: 14px;
+  width: 70%; 
+  height: 45px;
+  box-sizing: border-box; 
+  margin-bottom: 16px; 
+  padding-left: 10px;
+  border: 1px #DADADA solid; 
+  border-radius: 4px;
+}
+.login_div > input:focus {outline: 2px solid #D34658;}
+.login_button { 
+  width: 70%; 
+  height: 45px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.login_div a { text-decoration: none; color: #D34658; font-weight: 600;}
+.login_div a:hover { text-decoration: underline; color: #D34658; cursor: pointer; }
+
+/* signup */
+.signup_div { 
+  border-top: 8px solid #D34658; 
+  box-shadow: 0px 6px 15.8px rgba(75, 75, 75, 0.23); 
+  margin-top: 80px; 
+  min-height: 700px; 
+  text-align: center; 
+  padding-top: 50px; 
+  padding-bottom: 50px;
+}
+.signup_input > input {
+  height: 15px;
+  font-size: 14px;
+}
+
+.signup_div > img { width: 120px; }
+.signup_div > h1 { font-size: 28px; margin-top: 32px; margin-bottom: 16px; }
+.signup_div > button { 
+  width: 70%; 
+  height: 45px;
+  color: #D34658;
+  background-color: #FFFFFF;
+  border: 1px #D34658 solid;
+  border-radius: 4px;
+  margin-top: 16px;
+
+}
+.signup_div a { text-decoration: none; color: #D34658; font-weight: 600;}
+.signup_div a:hover { text-decoration: underline; color: #D34658; cursor: pointer; }
+
+/* login-old */
 .login_container{
   margin-top: 20vh;
   margin-bottom: 20vh;
-  margin-left: 35vw;
-  margin-right: 35vw;
-  min-width: 350px;
-  background-color: whitesmoke;
+  width: 300px;
+  background-color: #f5f5f5;
 }
-
 .login_container >div {
   width: 300px;
 }
-
 .Box {
   border: 1px solid;
   padding: 10px;
   float: left;
 }
-
 .img {
   width: 100px;
   height: auto;
 }
-
 .mainimg {
   width: 300px;
   height: auto;
 }
-
 .topName{
   display: flex;
   align-items: center;
   margin-right: 10px;
 }
-
 .image{
   margin-right: 10px;
 }
-
 .box{
   display: flex;
   flex-direction: column;
@@ -48,121 +107,123 @@ body {
   align-items: center;
   width: 100%;
 }
-
 .boxComponent{
   width: 48%;
 }
-
 .background {
-  min-height: 100vh;
-  /* min-width: 1000px; */
-  position: relative;
+  height: 100vh;
   background-color: #ebe4dd;
+  z-index: -1;
 }
-
 .top{ 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* topfixed */
 .header{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 15vh;
+  color: #605A5A;
+  background-color: #ebe4dd;
 }
-
 .nav{
-  margin-left: 12%;
+  margin-left: 8%;
   display: flex;
   align-items: center;
 }
-
 .navbar{
   padding:26px 30px;
   font-size: 20px;
   cursor: pointer;
 }
-
+.navbar:hover{
+  color: #000;
+}
 .logo{
-  width: 150px;
+  width: 100px;
   margin-right:50px;
   margin-bottom:10px;
   cursor: pointer;
 }
-
-.banner{
-  padding-left: 20%;
-  padding-right: 20%;
-  padding-top: 30%;
-  padding-bottom: 50px;
-}
-.banner > h1{
-  font-weight: 500;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 30px;
-}
-.banner > div{
-  font-size: 15px;
-}
-
-div.aboutus-cell {
-  display: flex;
-  flex-direction: row;
-}
-
-div.aboutus-question {
-  font-size: 30px;
-  margin-bottom: 30px;
-}
-
+/* dropdown */
 .button{ 
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50px;
-  width: 120px;
+  min-width: 120px;
   color: #fff;
-  background-color: #000;
-  margin-right: 80px;
+  background-color: #2B2627;
   padding: 16px;
   font-size: 16px;
   border: none;
-  cursor: pointer;
+  border-radius: 10px;
 }
-
 .dropdown{
-  align-items: center;
-  justify-content: center;
+  margin-right: 8%;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 3; 
 }
-
 .dropdown-content{
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 130px;
+  width: 120px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 3;
 }
-
 .dropdown-content > div{
-  color: black;
+  color: #605A5A;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-
-.dropdown-content > div:hover{
-  background-color: #f1f1f1;
-}
 .dropdown:hover .dropdown-content{
   display: block;
 }
-
 .dropdown:hover .button{
-  background-color: rgb(38, 38, 38);
+  background-color: #605A5A;
+}
+.dropdown-content > div:hover{
+  background-color: #f1f1f1;
+  color: #000;
 }
 
+/* main */
+.banner{
+  padding-left: 20%;
+  padding-right: 20%;
+  height: 85vh;
+}
+.banner > div > h1 {
+  font-weight: 800;
+  font-size: 30px;
+  color: #2B2627;
+  margin-bottom: 15px;
+}
+.banner > div > p {
+  font-weight: 800;
+  font-size: 25px;
+  z-index: 2;
+  color: #605A5A;
+  margin-top: 0px;
+}
+div.aboutus-cell {
+  display: flex;
+  flex-direction: row;
+}
+div.aboutus-question {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+/* footer */
 .text-footer {
   text-align: center;
   justify-content: center;
@@ -266,4 +327,33 @@ footer{
 .NFTbox{
   margin-top: 35px;
   margin-bottom: 35px;
+}
+
+/* mypagemain */
+.mypagemain1{
+  margin-top: 60px;
+  margin-bottom: 100px;
+}
+
+.profile > div{
+  margin-bottom: 16px;
+}
+.mypagemain2 h2{
+  margin-top: 0px;
+}
+.mypagemain2_container {
+  margin-right: 10px;
+  margin-left: 10px;
+  background: #f4f4f4;
+  border: 1px solid #d9d9d9;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  border-radius: 20px;
+  padding: 35px;
+  min-height: 200px;
+}
+.mypagemain2_container> div {
+  display: flex;
+  margin-top: 16px;
+  justify-content: space-between;
+  align-items: center;
 }
