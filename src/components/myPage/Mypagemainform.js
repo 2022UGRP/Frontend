@@ -15,6 +15,16 @@ const theme = createTheme({
 const Mypagemainform = (props) => {
     const navigate = useNavigate();
     const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
+
+    const date2str = (d) => {
+        const date = new Date(d);
+        const yy = date.getFullYear();
+        const mm = date.getMonth() + 1;
+        const dd = date.getDate();
+
+        return yy + '-' + mm + '-' + dd;
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <section className='mypagemain1'>
@@ -41,9 +51,9 @@ const Mypagemainform = (props) => {
                         <div className='mypagemain2_container'>
                             <h2 style={{fontSize: '24px'}}>판매 이력</h2>
                             {props.RequestsDatas.map((item, index) => (
-                                <div>{index+1}. {item.RequestDate} 판매
+                                <div>{index+1}. {date2str(item.CreatedAt)} 판매
                                 { (item.State===1)
-                                ? <Button color='warning' variant="contained" style={{height: '32px', width: '100px', fontWeight: '500', fontSize: '14px'}} onClick={() => { }}>판매 승인</Button>
+                                ? <Button color='warning' variant="contained" style={{height: '32px', width: '100px', fontWeight: '500', fontSize: '14px'}} onClick={() => props.handleApprove(item.RequestAddress, item.NFTtokenId, item.User_id)}>판매 승인</Button>
                                 : <Button disabled color='warning' variant="contained" style={{height: '32px', width: '100px', fontWeight: '500', fontSize: '14px'}} onClick={() => { }}>판매 완료</Button>}
                                 </div>
                             ))}
@@ -53,10 +63,10 @@ const Mypagemainform = (props) => {
                         <div className='mypagemain2_container'>
                             <h2 style={{fontSize: '24px'}}>구매 이력</h2>
                             {props.PurchasesDatas.map((item, index) => (
-                                <div>{index+1}. {item.PurchaseDate} 구매
+                                <div>{index+1}. {date2str(item.CreatedAt)} 구매
                                 { (item.State===1)
                                 ? <Button disabled color='warning' variant="contained" style={{height: '32px', width: '120px', fontWeight: '500', fontSize: '14px'}} onClick={() => { }}>승인 대기중</Button>
-                                : <Button color='warning' variant="contained" style={{height: '32px', width: '120px', fontWeight: '500', fontSize: '14px'}} onClick={()=>navigate(`/mypage/NFTview/${item.NFT_id}`)}>열람</Button>}
+                                : <Button color='warning' variant="contained" style={{height: '32px', width: '120px', fontWeight: '500', fontSize: '14px'}} onClick={()=>navigate(`/mypage/NFTview/${item.Portfolio_id}`)}>열람</Button>}
                                 </div>
                             ))}
                         </div>

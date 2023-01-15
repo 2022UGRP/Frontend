@@ -57,7 +57,10 @@ const MyPageNFTmint = () => {
           });
 
       })
-      .catch(e => console.log(e));
+      .catch(e => {
+        console.log(e);
+        enqueueSnackbar(`NFT 발행에 실패하였습니다`, { variant: 'error' });
+      });
   };
 
   const getNFTInfo = async () => {

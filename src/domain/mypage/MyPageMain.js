@@ -1,63 +1,59 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mypagemainform } from '../../components/myPage';
 import { useCookies } from 'react-cookie';
 import Aftertopfixed from 'components/fixed/Aftertopfixed';
 import Bottomfixed from 'components/fixed/Bottomfixed';
+import axios from 'axios';
 
 const MyPageMain = () => {
   const [cookies, setCookie,] = useCookies(['loginkey']);
-  
-  const [RequestsDatas, setRequestsDatas] = useState([
-    {
-      Token_id: '',
-      Wallet_address: '',
-      NFT_id: '',
-      RequestDate: '2022-07-21',
-      State: 1                       //1이면 승인해야함, 2이면 승인완료한 것
+
+  const [RequestsDatas, setRequestsDatas] = useState([])
+  const [PurchasesDatas, setPurchasesDatas] = useState([])
+
+  const loadList = async () => {
+    await axios.get(`/api/nft/list/${cookies.loginkey}`)
+      .then(res => {
+        console.log(res.data);
+        setRequestsDatas(res.data.requests);
+        setPurchasesDatas(res.data.purchases);
+      })
+  };
+
+  useEffect(() => {
+    loadList();
+  }, []);
+
+  const handleApprove = async (requestAddress, tokenId, userId) => {
+    const body = {
+      owner: window.ethereum.selectedAddress,
+      to: requestAddress,
+      tokenId: tokenId
     }
-  ])
+    await axios.put('/api/nft/transfer', body)
+      .then(async res => {
+        console.log('transfer');
+        console.log(res.data);
+        const txHash = await window.ethereum.request({
+          method: "eth_sendTransaction",
+          params: [res.data.param],
+        });
 
-  const [PurchasesDatas, setPurchasesDatas] = useState([
-    {
-      Token_id: '',
-      Wallet_address: '',
-      NFT_id: '',
-      PurchaseDate: '2022-07-21',
-      State: 1                  //1이면 승인요청보냈는데 수락을 못받은것, 2이면 구매완료한것
-    },
-    {
-      Token_id: '',
-      Wallet_address: '',
-      NFT_id: '123',
-      PurchaseDate: '2022-07-21',
-      State: 2                  //1이면 승인요청보냈는데 수락을 못받은것, 2이면 구매완료한것
-    }
-  ])
-  
-// 고쳐서 쓰세용!!
+        console.log("https://goerli.etherscan.io/tx/" + txHash);
 
-  // const loadRequest = async () => {
-  //   await axios.get('/api/user/----')
-  //     .then(res => {
-  //       console.log(res.data.----);
-  //       setNFTDatas(res.data.----);
-  //     })
-  //     .catch(e => console.log(e));
-  // }
-
-  // const loadPurchase = async () => {
-  //   await axios.get('/api/user/----')
-  //     .then(res => {
-  //       console.log(res.data.----);
-  //       setNFTDatas(res.data.----);
-  //     })
-  //     .catch(e => console.log(e));
-  // }
-  
-  // useEffect(()=>{
-  //     loadNFT();
-  //     loadPurchase();
-  // }, []);
+        await axios.put('/api/nft/transfer/success', {
+          loginKey: cookies.loginkey,
+          to: requestAddress,
+          toId: userId,
+          tokenId: tokenId
+        })
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(e => console.log(e));
+      })
+      .catch(e => console.log(e));
+  };
 
   return (
     <>
@@ -65,7 +61,7 @@ const MyPageMain = () => {
       <Mypagemainform
         RequestsDatas={RequestsDatas}
         PurchasesDatas={PurchasesDatas}
-      />
+        handleApprove={handleApprove} />
       {/* <Bottomfixed /> */}
     </>
   )
