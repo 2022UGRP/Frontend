@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { height } from '@mui/system';
+import { LoadingImage } from 'components/utils/Loading';
+import loading from 'img/loading.gif';
 
 const theme = createTheme({
     palette: {
@@ -31,7 +33,7 @@ const Mypagemainform = (props) => {
                 <Grid container justifyContent='center' alignItems='center' spacing={2}>
                     <Grid item xs={12} md={4} lg={3} textAlign='center'>
                         <div style={{textAlign: 'left'}}>
-                            <img src={cookies.image} className="mainimg components" alt="lowlogo" />
+                            <LoadingImage placeholderImg={loading} src={cookies.image} className="mainimg components" alt="lowlogo" />
                         </div>
                     </Grid>
                     <Grid item className="profile" xs={12} sm={10} md={6} lg={5}> 

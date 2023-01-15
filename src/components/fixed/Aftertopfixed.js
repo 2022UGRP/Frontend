@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import logo from "img/logo.png";
 import { useNavigate } from 'react-router-dom';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useCookies } from "react-cookie";
-import { Avatar } from '@mui/material';
+import { LoadingAvatar } from 'components/utils/Loading';
+import loading from 'img/loading.gif';
 
 function Aftertopfixed() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function Aftertopfixed() {
       </ul>
       <div class="dropdown">
         <button className="button">
-          <Avatar sx={{ width: 32, height: 32, marginRight: '10px', border: '0.5px solid', borderColor: '#ff' }} src={cookies.image}/>
+          <LoadingAvatar sx={{ width: 32, height: 32, marginRight: '10px', border: '0.5px solid', borderColor: '#ff' }} placeholderImg={loading} src={cookies.image}/>
           {cookies.name}  <ArrowDropDownIcon/>
         </button>
         <div className="dropdown-content">
