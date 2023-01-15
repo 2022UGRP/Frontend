@@ -56,7 +56,7 @@ const Mypagemainform = (props) => {
                                 <div>{index+1}. {item.PurchaseDate} 구매
                                 { (item.State===1)
                                 ? <Button disabled color='warning' variant="contained" style={{height: '32px', width: '120px', fontWeight: '500', fontSize: '14px'}} onClick={() => { }}>승인 대기중</Button>
-                                : <Button color='warning' variant="contained" style={{height: '32px', width: '120px', fontWeight: '500', fontSize: '14px'}} onClick={() => { }}>열람</Button>}
+                                : <Button color='warning' variant="contained" style={{height: '32px', width: '120px', fontWeight: '500', fontSize: '14px'}} onClick={()=>navigate(`/mypage/NFTview/${item.NFT_id}`)}>열람</Button>}
                                 </div>
                             ))}
                         </div>

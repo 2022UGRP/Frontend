@@ -11,7 +11,7 @@ const MyPageMain = () => {
     {
       Token_id: '',
       Wallet_address: '',
-      PortfolioKey: '',
+      NFT_id: '',
       RequestDate: '2022-07-21',
       State: 1                       //1이면 승인해야함, 2이면 승인완료한 것
     }
@@ -21,14 +21,14 @@ const MyPageMain = () => {
     {
       Token_id: '',
       Wallet_address: '',
-      PortfolioKey: '',
+      NFT_id: '',
       PurchaseDate: '2022-07-21',
       State: 1                  //1이면 승인요청보냈는데 수락을 못받은것, 2이면 구매완료한것
     },
     {
       Token_id: '',
       Wallet_address: '',
-      PortfolioKey: '',
+      NFT_id: '123',
       PurchaseDate: '2022-07-21',
       State: 2                  //1이면 승인요청보냈는데 수락을 못받은것, 2이면 구매완료한것
     }
