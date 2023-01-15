@@ -2,6 +2,8 @@ import * as React from 'react';
 import { ImageList, ImageListItem, ImageListItemBar, IconButton, Input, InputAdornment } from '@mui/material';
 import { Search, Info } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import loading from 'img/loading.gif';
+import { LoadingImage } from 'components/utils/Loading';
 
 const Markettourform = (props) => {
   const navigate = useNavigate();
@@ -25,7 +27,8 @@ const Markettourform = (props) => {
       <ImageList sx={{ width: '100%', height: '100%' }} cols={4}>
         {props.NFTDatas.map((item, index) => (
           <ImageListItem key={index} onClick={()=>navigate(`/market/purchase/${item.NFT_id}/${item.CopyrightHolder_id}`)}>
-            <img
+            <LoadingImage
+              placeholderImg={loading}
               src={item.Image}
               alt={item.title}
               loading="lazy"

@@ -7,6 +7,8 @@ import {
   useLocation
 } from "react-router-dom";
 import ListSubheader from '@mui/material/ListSubheader';
+import { LoadingImage } from 'components/utils/Loading';
+import loading from 'img/loading.gif';
 
 const Marketpurchaseform = (props) => {
     const navigate=useNavigate();
@@ -30,7 +32,8 @@ const Marketpurchaseform = (props) => {
         {props.NFTDatas.map((item, index) => (
           <div>
           <ImageListItem key={index} onClick={()=>navigate(`/market/purchase/${item.NFT_id}/${item.CopyrightHolder_id}`)}>
-            <img
+            <LoadingImage
+              placeholderImg={loading}
               src={item.Image}
               alt={item.title}
               loading="lazy"
