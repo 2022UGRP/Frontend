@@ -1,14 +1,14 @@
 import React from 'react'
-import Beforemainform from '../../components/main/Beforemainform';
+import Mainform from '../../components/main/Mainform';
 import Beforetopfixed from 'components/fixed/Beforetopfixed';
 
-function BeforeMain() {
+const BeforeMain = () => {
   return (
-    <>
+    <div className = "background">
       <Beforetopfixed/>
-      <Beforemainform/>
-    </>
+      <Mainform/>
+    </div>
   )
-}
+};
 
-export default BeforeMain
+export default BeforeMain;

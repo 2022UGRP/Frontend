@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import Aftermainform from '../../components/main/Aftermainform'
+import Mainform from '../../components/main/Mainform';
+import Aftertopfixed from 'components/fixed/Aftertopfixed';
 
-function AfterMain() {
+const AfterMain = () => {
 
   const connectWallet = async () => {
     if (window.ethereum) {
@@ -19,7 +20,10 @@ function AfterMain() {
   }, []);
 
   return (
-    <Aftermainform />
+    <div className = "background">
+      <Aftertopfixed/>
+      <Mainform/>
+    </div>
   )
 }
 

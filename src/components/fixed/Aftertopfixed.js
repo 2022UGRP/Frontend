@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import logo from "img/logo.png";
 import { useNavigate } from 'react-router-dom';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useCookies } from "react-cookie";
+import { Avatar } from '@mui/material';
 
 function Aftertopfixed() {
   const navigate = useNavigate();
@@ -28,7 +29,8 @@ function Aftertopfixed() {
       </ul>
       <div class="dropdown">
         <button className="button">
-          {cookies.name}  <ExpandMoreIcon/>
+          <Avatar sx={{ width: 32, height: 32, marginRight: '10px', border: '0.5px solid', borderColor: '#ff' }} src={cookies.image}/>
+          {cookies.name}  <ArrowDropDownIcon/>
         </button>
         <div className="dropdown-content">
           <div onClick={()=>navigate('/mypage')}>My page</div>

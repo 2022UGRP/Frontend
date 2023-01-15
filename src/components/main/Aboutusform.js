@@ -4,10 +4,9 @@ import Bottomfixed from 'components/fixed/Bottomfixed';
 import logo from 'img/logo.png';
 import ex from 'img/1.png'
 
-function Afteraboutusform() {
+function Aboutusform() {
   return (
     <div className="background">
-      <Aftertopfixed />
       <div className="banner">
         <h1>About us</h1>
         <div>안녕하세요! 저희는 NFT-I입니다</div>
@@ -47,9 +46,8 @@ function Afteraboutusform() {
             style={{ marginLeft: '10px', backgroundColor: 'white' }} />
         </div>
       </div>
-      {/* <Bottomfixed /> */}
     </div>
   )
 };
 
-export default Afteraboutusform;
+export default Aboutusform;
