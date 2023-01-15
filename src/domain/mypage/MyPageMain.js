@@ -24,28 +24,28 @@ const MyPageMain = () => {
     loadList();
   }, []);
 
-  const handleApprove = async (requestAddress, tokenId, userId) => {
+  const handleApprove = async (requestAddress, txHash, userId) => {
     const body = {
       owner: window.ethereum.selectedAddress,
       to: requestAddress,
-      tokenId: tokenId
+      txHash: txHash
     }
     await axios.put('/api/nft/transfer', body)
       .then(async res => {
         console.log('transfer');
         console.log(res.data);
-        const txHash = await window.ethereum.request({
+        const newHash = await window.ethereum.request({
           method: "eth_sendTransaction",
           params: [res.data.param],
         });
 
-        console.log("https://goerli.etherscan.io/tx/" + txHash);
+        console.log("https://goerli.etherscan.io/tx/" + newHash);
 
         await axios.put('/api/nft/transfer/success', {
           loginKey: cookies.loginkey,
           to: requestAddress,
           toId: userId,
-          tokenId: tokenId
+          txHash: txHash
         })
           .then(res => {
             console.log(res.data);
