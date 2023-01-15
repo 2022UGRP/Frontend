@@ -2,7 +2,7 @@ import React from 'react';
 import Aftertopfixed from 'components/fixed/Aftertopfixed';
 import Bottomfixed from 'components/fixed/Bottomfixed';
 import logo from 'img/logo.png';
-import ex from 'img/1.png'
+import ex from 'img/griaffe.png'
 
 function Aboutusform() {
   return (
