@@ -30,7 +30,7 @@ const Mypagemainform = (props) => {
             <section className='mypagemain1'>
                 <Grid container justifyContent='center' alignItems='center' spacing={2}>
                     <Grid item xs={12} md={4} lg={3} textAlign='center'>
-                        <div>
+                        <div style={{textAlign: 'left'}}>
                             <img src={cookies.image} className="mainimg components" alt="lowlogo" />
                         </div>
                     </Grid>

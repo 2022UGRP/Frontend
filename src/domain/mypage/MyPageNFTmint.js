@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import Aftertopfixed from 'components/fixed/Aftertopfixed';
 
 const MyPageNFTmint = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -12,7 +13,7 @@ const MyPageNFTmint = () => {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(cookies.image);
   const [title, setTitle] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState('');
 
   const handleChangeNFTtitle = (event) => {
     setTitle(event.target.value);
@@ -43,7 +44,7 @@ const MyPageNFTmint = () => {
           name: cookies.name,
           title: title,
           result: res.data.result,
-          tokenId: res.data.tokenId,
+          txHash: txHash,
           price: price,
         })
           .then(res => {
@@ -77,15 +78,18 @@ const MyPageNFTmint = () => {
   }, []);
 
   return (
-    <MypageNFTmintform
-      image={image}
-      title={title}
-      price={price}
-      description={description}
-      handleClickNFTMint={handleClickNFTMint}
-      handleChangeNFTtitle={handleChangeNFTtitle}
-      handleChangeNFTprice={handleChangeNFTprice}
-    />
+    <>
+      <Aftertopfixed />
+      <MypageNFTmintform
+        image={image}
+        title={title}
+        price={price}
+        description={description}
+        handleClickNFTMint={handleClickNFTMint}
+        handleChangeNFTtitle={handleChangeNFTtitle}
+        handleChangeNFTprice={handleChangeNFTprice}
+      />
+    </>
   )
 };
 

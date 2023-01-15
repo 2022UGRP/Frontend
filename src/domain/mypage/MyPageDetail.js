@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Mypagedetailform } from 'components/myPage';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import Aftertopfixed from 'components/fixed/Aftertopfixed';
 
 const MyPageDetail = () => {
   const navigate = useNavigate();
@@ -51,10 +52,14 @@ const MyPageDetail = () => {
   }, []);
 
   return (
-    <Mypagedetailform
-      elementDatas={elementDatas}
-      selfintroDatas={selfintroDatas}
-    />
+    <>
+      <Aftertopfixed/>
+      <Mypagedetailform
+        elementDatas={elementDatas}
+        selfintroDatas={selfintroDatas}
+      />
+      {/* <Bottomfixed/> */}
+    </>
   )
 }
 

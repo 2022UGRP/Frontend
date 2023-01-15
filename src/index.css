@@ -334,7 +334,6 @@ footer{
   margin-top: 60px;
   margin-bottom: 100px;
 }
-
 .profile > div{
   margin-bottom: 16px;
 }
@@ -357,3 +356,52 @@ footer{
   justify-content: space-between;
   align-items: center;
 }
+
+/* mypagedetail */
+.mypagedetail1{ margin-top: 60px; margin-bottom: 50px; }
+
+
+.mypagedetail2 { margin-bottom: 50px }
+.mypagedetail2_container > div { text-align: center; }
+.mypagedetail2_container > div > div {
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #f4f4f4;
+  min-height: 200px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: left;
+}
+.mypagedetail2 h1 {margin: 0px;}
+.mypagedetail2 h3 {margin-top: 5px; margin-bottom: 5px;}
+
+
+.mypagedetail3 { margin-bottom: 50px }
+.mypagedetail3 h1 {margin: 0px;}
+.mypagedetail3_container > div {
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #f4f4f4;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: left;
+}
+
+/* mypagenftmint */
+.mypagenftmint{
+  margin-top: 60px;
+}
+
+.mypagenftmint input { 
+  font-size: 14px;
+  width: 100%; 
+  height: 45px;
+  box-sizing: border-box; 
+  margin-bottom: 16px; 
+  padding-left: 10px;
+  background-color: #f4f4f4;
+  border: 1px #DADADA solid; 
+  border-radius: 4px;
+}
+.mypagenftmint h3 { font-size: 20px; font-weight: 700; }
+.mypagenftmint input:focus {outline: 2px solid #D34658;}
