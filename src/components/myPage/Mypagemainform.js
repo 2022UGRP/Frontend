@@ -40,7 +40,7 @@ const Mypagemainform = (props) => {
                         <h2 style={{fontSize: '30px'}}>{cookies.name} 님</h2>
                         <div>나이: {cookies.age}세 </div>
                         <div>최종학력: {cookies.school} / {cookies.major} 전공</div>
-                        <div>최근 NFT 발행: 날짜 넣기</div>
+                        <div>최근 NFT 발행: 23.01.16</div>
                         <br></br>
                         <Button color='warning' variant="outlined" style={{marginTop: '15px', height: '32px', width: '180px', fontWeight: '500', fontSize: '14px'}} onClick={() => { navigate('/mypage/detail') }}>포트폴리오 상세보기</Button>
                         {/* <Button color='warning' variant="contained" style={{marginTop: '15px', height: '32px', width: '180px', fontWeight: '500', fontSize: '14px'}} onClick={() => { navigate('/mypage/detail') }}>포트폴리오 상세보기</Button> */}

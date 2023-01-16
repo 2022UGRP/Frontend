@@ -52,7 +52,7 @@ const Marketmainform = (props) => {
                         />
                         <ImageListItemBar
                           id={item.CopyrightHolder_id}
-                          title={`${item.NFTtitle} by ${item.NFTownerName}`}
+                          title={`${item.NFTtitle} by ${item.CopyrightHolderName}`}
                           subtitle={`${item.NFTprice} ETH`}
                           actionIcon={
                             <div>
