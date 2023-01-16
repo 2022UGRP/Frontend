@@ -111,7 +111,7 @@ body {
   width: 48%;
 }
 .background {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #ebe4dd;
   z-index: -1;
 }
@@ -453,11 +453,72 @@ footer{
 
 .mypageselfintro1 input:focus {outline: 2px solid #D34658;}
 
-
 /* marketmain */
 .marketmain1{
   margin-top: 30px;
 }
-.css-ztrqiq-MuiImageListItemBar-root {
+/* .css-ztrqiq-MuiImageListItemBar-root {
   background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%) !important;
+} */
+
+/* .css-ztrqiq-MuiImageListItemBar-root {
+  background: linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%) !important;
+} */
+
+.css-pxxd1-MuiImageListItem-root::after {
+  background: linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%) !important;
 }
+
+.marketpurchase1{
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.marketinfo > div{
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* aboutus */
+.aboutus{
+  margin-top: 30px;
+  padding-bottom: 220px;
+}
+.css-1rdxx0t-MuiGrid-root>.MuiGrid-item{
+  z-index: 1;
+}
+.css-vo2jo5-MuiGrid-root{
+  position:sticky;
+  z-index: 4 !important;
+}
+.aboutus h2{ 
+  font-size: 32px; 
+  font-weight: 800; 
+  color: #2B2627; 
+}
+.aboutus h3{ font-size: 24px; font-weight: 800; color: #605A5A; }
+.aboutus_container1 p{ font-size: 18px; line-height: 2;}
+.aboutusbackground{
+  height: 100%
+}
+.aboutus span{ 
+  font-weight: 800; 
+}
+/* .aboutus span{ 
+  padding-bottom: 5px;
+  background: linear-gradient(0deg, rgba(233, 162, 171, 0.5) 50%,transparent 0);
+
+} */
+
+.aboutus h2 span{ 
+  padding-bottom: 5px;
+  background: linear-gradient(0deg, rgba(233, 162, 171, 0.5) 50%,transparent 0);
+
+}
+
+.aboutus_container2 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: rgba(96, 90, 90, 0.1) ;
+}
+.aboutus_container2 p{ font-size: 20px;}

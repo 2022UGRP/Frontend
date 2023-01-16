@@ -4,8 +4,10 @@ import { useCookies } from 'react-cookie';
 import Aftertopfixed from 'components/fixed/Aftertopfixed';
 import Bottomfixed from 'components/fixed/Bottomfixed';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MyPageMain = () => {
+  const navigate=useNavigate();
   const [cookies, setCookie,] = useCookies(['loginkey']);
 
   const [RequestsDatas, setRequestsDatas] = useState([])
@@ -49,6 +51,7 @@ const MyPageMain = () => {
         })
           .then(res => {
             console.log(res.data);
+            navigate('/mypage');
           })
           .catch(e => console.log(e));
       })

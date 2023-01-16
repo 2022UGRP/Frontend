@@ -4,7 +4,7 @@ import React from 'react';
 
 const AfterAboutUs = () => {
   return (
-    <div>
+    <div className = "background">
       <Aftertopfixed/>
       <Aboutusform/>
     </div>

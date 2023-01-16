@@ -4,10 +4,10 @@ import React from 'react';
 
 const BeforeAboutUs = () => {
   return (
-    <>
+    <div className = "background">
       <Beforetopfixed/>
       <Aboutusform/>
-    </>
+    </div>
   )
 }
 

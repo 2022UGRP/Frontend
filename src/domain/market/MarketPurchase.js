@@ -41,11 +41,11 @@ const MarketPurchase = () => {
   }, []);
 
   // 구매 요청 함수
-  const handleRequestPurchase = async () => {
+  const handleRequestPurchase = async (address) => {
     const body = {
       loginKey: cookies.loginkey,
-      address: NFTDatas.NFTownerAddress,
-      portfolioKey: NFTDatas.NFT_id
+      address: address,
+      portfolioKey: NFT_id
     }
     await axios.put('/api/nft/purchase', body)
       .then(res => {
@@ -61,10 +61,11 @@ const MarketPurchase = () => {
   return (
     <>
       <Aftertopfixed />
-      <ResponsiveAppBar />
+      {/* <ResponsiveAppBar /> */}
       <Marketpurchaseform
         NFT_id={NFT_id}
         NFTDatas={NFTDatas}
+        handleRequestPurchase={handleRequestPurchase}
       />
     </>
   )
