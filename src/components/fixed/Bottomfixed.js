@@ -3,9 +3,9 @@ import React from 'react';
 function Bottomfixed() {
   return (
     <footer className="footer">
-        <p className="text-footer">
+        <div className="text-footer">
             Copyright ©-All rights are reserved
-        </p>
+        </div>
     </footer>
   // <>
   //   <div id='wrapper'>

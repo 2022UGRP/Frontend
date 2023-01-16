@@ -13,12 +13,12 @@ const theme = createTheme({
   },
 });
 
-const Mypagedetailform = (props) => {
+const MyPageNFTviewform = (props) => {
   const navigate = useNavigate();
   const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
-
+    
   return (
-    <ThemeProvider theme={theme}>
+<ThemeProvider theme={theme}>
       <section className='mypagedetail1'>
         <Grid container justifyContent='center' alignItems='center' spacing={2}>
           <Grid item xs={12} md={4} lg={3} textAlign='center'>
@@ -32,7 +32,7 @@ const Mypagedetailform = (props) => {
             <div>최종학력: {cookies.school} / {cookies.major} 전공</div>
             <div>최근 NFT 발행: 23.01.16</div>
             <br></br>
-            <Button color='warning' variant="outlined" style={{ marginTop: '15px', height: '32px', width: '180px', fontWeight: '500', fontSize: '14px' }} onClick={() => { navigate('/mypage/NFTmint') }}>NFT 발행하기</Button>
+            {/* <Button color='warning' variant="outlined" style={{ marginTop: '15px', height: '32px', width: '180px', fontWeight: '500', fontSize: '14px' }} onClick={() => { navigate('/mypage/NFTmint') }}>NFT 발행하기</Button> */}
             {/* <Button color='warning' variant="contained" style={{marginTop: '15px', height: '32px', width: '180px', fontWeight: '500', fontSize: '14px'}} onClick={() => { navigate('/mypage/detail') }}>포트폴리오 상세보기</Button> */}
           </Grid>
         </Grid>
@@ -42,7 +42,7 @@ const Mypagedetailform = (props) => {
         <Grid container justifyContent='center' alignItems='center' spacing={2}>
           <Grid item xs={12} md={10} lg={8} textAlign='left' display='flex' justifyContent='space-between' alignItems='center'>
             <h1 style={{ fontSize: '25px', fontWeight: '700' }}>포트폴리오</h1>
-            <Button color='warning' variant="contained" style={{ height: '32px', width: '220px', fontWeight: '500', fontSize: '14px' }} onClick={() => { navigate('/mypage/portfolio') }}>포트폴리오 구성요소 추가</Button>
+            {/* <Button color='warning' variant="contained" style={{ height: '32px', width: '220px', fontWeight: '500', fontSize: '14px' }} onClick={() => { navigate('/mypage/portfolio') }}>포트폴리오 구성요소 추가</Button> */}
           </Grid>
           <Grid item className='mypagedetail2_container' xs={12} md={10} lg={8} display='flex'>
             <Grid item xs={12} md={4} lg={2.4}>
@@ -122,7 +122,7 @@ const Mypagedetailform = (props) => {
         <Grid container justifyContent='center' alignItems='center' spacing={2}>
           <Grid item xs={12} md={10} lg={8} textAlign='left' display='flex' justifyContent='space-between' alignItems='center'>
             <h1 style={{ fontSize: '25px', fontWeight: '700' }}>자기소개서</h1>
-            <Button color='warning' variant="contained" style={{ height: '32px', width: '160px', fontWeight: '500', fontSize: '14px' }} onClick={() => { navigate('/mypage/selfintro') }}>자기소개서 등록</Button>
+            {/* <Button color='warning' variant="contained" style={{ height: '32px', width: '160px', fontWeight: '500', fontSize: '14px' }} onClick={() => { navigate('/mypage/selfintro') }}>자기소개서 등록</Button> */}
           </Grid>
           {props.selfintroDatas.map((v,) => {
             const date = new Date(v.Date);
@@ -142,91 +142,10 @@ const Mypagedetailform = (props) => {
             );
           })}
         </Grid>
-        {/* 
-      <div style={{ width: '100%' }}>
-        <Box
-          component="span"
-          sx={{
-            display: 'block',
-            p: 1,
-            m: 1,
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
-            color: (theme) =>
-              theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
-            border: '1px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-            borderRadius: 2,
-            fontSize: '0.875rem',
-            fontWeight: '700',
-            alignItems: 'center',
-          }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
-          <div className="box">
-            <div className="self-card-list">
-              <div className="list_title">
-                <h2>포트폴리오</h2>
-                <Button variant="outlined" style={{ height: '35px' }} onClick={() => { navigate('/mypage/portfolio') }}>포트폴리오 구성요소 추가</Button>
-              </div>
-              {props.elementDatas.map((v,) => {
-                return (
-                  <div className="each-self-card">
-                    <div>
-                      <span className="card-pass">{v.Activity}</span>
-                    </div>
-                    <span className="card-pre">{v.Contents}</span>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="self-card-list">
-              <div className="list_title">
-                <h2>자기소개서</h2>
-                <Button variant="outlined" style={{ height: '35px' }} onClick={() => { navigate('/mypage/selfintro') }}>자기소개서 등록</Button>
-              </div>
-              {props.selfintroDatas.map((v,) => {
-                const date = new Date(v.Date);
-                const y = date.getFullYear();
-                const m = date.getMonth() + 1;
-                const d = date.getDate();
-                return (
-                  <div className="each-self-card">
-                    <div>
-                      <span className="card-pass">{v.Title}합격</span>
-                      <span className="card-date">{y}.{m}.{d} 등록</span>
-                    </div>
-                    <span className="card-pre">{v.Contents}</span>
-                  </div>
-                );
-              })}
-            </div>
-
-          </div>
-          <Button variant="outlined" style={{
-            width: '70%',
-            alignSelf: 'center',
-            marginTop: 15,
-          }} onClick={() => { navigate('/mypage/NFTmint'); }}>NFT 발행</Button>
-        </Box>
-      </div> */}
-
-
-
-
       </section>
 
     </ThemeProvider>
-
-
-
-
-
   )
-}
+};
 
-export default Mypagedetailform;
+export default MyPageNFTviewform;

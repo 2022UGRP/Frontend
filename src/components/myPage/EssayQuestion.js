@@ -3,23 +3,18 @@ import { TextField } from "@mui/material";
 const EssayQuestion = (props) => {
   return(
     <>
-      <div style={{border: '1px solid', marginLeft: '5vw', marginRight: '5vw'}}>
-        <p>
-        {props.question}
-        </p>
         <TextField
+          color='warning'
           required
           multiline
           fullWidth
           rows={4}
           id={props.pid}
           name={props.pname}
-          label="Required"
+          label="상세설명을 입력하세요"
           variant="filled"
           onChange={props.changeEssayHandler}
         />
-      </div>
-      <div style={{height: '10px'}}></div>
     </>
   )
   

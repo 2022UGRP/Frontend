@@ -1,11 +1,15 @@
+import Aftertopfixed from 'components/fixed/Aftertopfixed';
+import { MyPageNFTviewform, Mypagedetailform } from 'components/myPage';
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Mypagedetailform } from 'components/myPage';
+import { useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-import Aftertopfixed from 'components/fixed/Aftertopfixed';
 
-const MyPageDetail = () => {
+
+const MyPageNFTview = () => {
+  let { NFT_id } = useParams();
+
   const navigate = useNavigate();
   const [cookies, setCookie,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
 
@@ -23,7 +27,7 @@ const MyPageDetail = () => {
   const loadPortfolio = async () => {
     await axios({
       method: 'get',
-      url: `/api/portfolio/${cookies.portfoliokey}`,
+      url: `/api/portfolio/${NFT_id}`,
     })
       .then((res) => {
         console.log('res')
@@ -53,14 +57,13 @@ const MyPageDetail = () => {
 
   return (
     <>
-      <Aftertopfixed/>
-      <Mypagedetailform
-        elementDatas={elementDatas}
-        selfintroDatas={selfintroDatas}
-      />
-      {/* <Bottomfixed/> */}
+        <Aftertopfixed/>
+        <MyPageNFTviewform
+            elementDatas={elementDatas}
+            selfintroDatas={selfintroDatas}
+        />
     </>
   )
-}
+};
 
-export default MyPageDetail;
+export default MyPageNFTview;

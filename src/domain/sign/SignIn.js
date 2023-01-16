@@ -1,22 +1,25 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Signinform } from '../../components/sign';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import {useCookies} from 'react-cookie';
+import { useCookies } from 'react-cookie';
+import { useSnackbar } from 'notistack';
 
 const SignIn = () => {
+    const { enqueueSnackbar } = useSnackbar();
+
     const [cookies, setCookie,] = useCookies(['loginkey']);
     const navigate = useNavigate();
     const [login, setLogin] = useState({
         email: '',
-        password: ''     
+        password: ''
     });
     const handleChangeLogin = (event) => {
-        let changeLogin = {...login};
+        let changeLogin = { ...login };
         changeLogin[event.target.name] = event.target.value;
         setLogin(changeLogin);
     };
-    const handleClickLogin = async() =>{
+    const handleClickLogin = async () => {
         const formData = new FormData();
         formData.append('email', login.email);
         formData.append('password', login.password);
@@ -25,25 +28,30 @@ const SignIn = () => {
                 "content-type": "multipart.form-data"
             }
         }
-        await axios.post("/api/users/login", formData, config).then((response)=>{
-            if(response.data.login === false){
-                alert('로그인 실패')
+        await axios.post("/api/users/login", formData, config).then((res) => {
+            if (res.data.login === false) {
+                enqueueSnackbar(`아이디/비밀번호를 다시 확인해주세요`, { variant: 'error' });
             }
-            else if (response.data.login === true){
-                alert('로그인 성공')
-                console.log(response.data.user._id);
-                setCookie("loginkey", response.data.user._id, {path : '/'});
+            else if (res.data.login === true) {
+                enqueueSnackbar('NFT-I에 로그인하신 것을 환영합니다', { variant: 'info' });
+                setCookie("loginkey", res.data.Id, { path: '/' });
+                setCookie("name", res.data.Name, { path: '/' });
+                setCookie('age', res.data.Age, { path: '/' });
+                setCookie('school', res.data.School, { path: '/' });
+                setCookie('major', res.data.Major, { path: '/' });
+                setCookie('image', res.data.Image, { path: '/' });
+                setCookie("portfoliokey", res.data.Portfolio_id, { path: '/' });
                 navigate('/main')
             }
-        }).catch((Error)=>{
+        }).catch((Error) => {
             console.log(Error);
         })
     };
-    
+
     return (
         <Signinform
-            login={login} 
-            handleChangeLogin={handleChangeLogin} 
+            login={login}
+            handleChangeLogin={handleChangeLogin}
             handleClickLogin={handleClickLogin}
         />
     )

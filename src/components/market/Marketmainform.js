@@ -1,105 +1,81 @@
-import React, {useState} from 'react';
-import ResponsiveAppBar from './ResponsiveAppBar.js';
-import RecipeReviewCard from './RecipeReviewCard.js';
-import { Grid, Box, Pagination} from '@mui/material';
-import Aftertopfixed from 'components/fixed/Aftertopfixed.js';
-import Bottomfixed from 'components/fixed/Bottomfixed.js';
+import * as React from 'react';
+import { Grid, ImageList, ImageListItem, ImageListItemBar, IconButton, Input, InputAdornment } from '@mui/material';
+import { Search, Info } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    secondary: { main: '#A4A4A4'},
+    warning: { main: '#D34658'}
+  },
+});
 
 const Marketmainform = (props) => {
-  const [ind,setInd]=React.useState(0);
-  const [Recipe, setRecipe] = useState({
-    title:`${props.market.title}` ,
-    subheader: `${props.market.subheader}`,
-    suminfo: `${props.market.suminfo}`
-
-})
+  const navigate = useNavigate();
   return (
-    <>
-      <Aftertopfixed/>
-      <ResponsiveAppBar setInd={setInd} />
-      {ind}
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          height: '70%',
-          padding: '1%',
-        }}>
-        <Grid 
-          container rowSpacing={1} 
-          columnSpacing={{xs: 1, sm:2, md:3}}
-          alignItems="center"
-          justifyContent="center"
-          >
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-            <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>s
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-            <RecipeReviewCard
-              Recipe={Recipe}
-            />
+    <ThemeProvider theme={theme}>
+      <section className='marketmain1'>
+          <Grid container justifyContent='center' alignItems='center' spacing={2}>
+            <Grid item xs={12} md={9} lg={8} textAlign='center'>
+              <h1 style={{ fontSize: '38px', fontWeight: '800', color: '#2B2627' }}>
+                Explore, collect and Sell NFTs
+              </h1>
+              <div style={{ marginBottom: '5px' }}> NFT-I에서 포트폴리오를 저작권 걱정없이 마음껏 거래해보세요! </div>
+            </Grid>
+            <Grid item xs={12} md={9} lg={8} textAlign='center'>
+              <Input
+                color='warning'
+                style={{ width: '1000px' }} 
+                id="standard-adornment-password Check"
+                placeholder='search items'
+                value={props.search}
+                name='search'
+                onChange={props.handleChangeSearch}
+                startAdornment={
+                    <InputAdornment position="start">
+                        <IconButton><Search />
+                        </IconButton>
+                    </InputAdornment>
+                  }
+              />
+            </Grid>
+            <Grid item xs={12} md={9} lg={8} >
+                  <ImageList sx={{ width: '100%', height: '100%' }} cols={4}>
+                    {props.NFTDatas.map((item, index) => (
+                      <ImageListItem key={index} onClick={()=>navigate(`/market/purchase/${item.NFT_id}/${item.CopyrightHolder_id}`)}>
+                        <img
+                          // style={{margin: '10px'}}
+                          src={item.Image}
+                          alt={item.title}
+                          loading="lazy"
+                        />
+                        <ImageListItemBar
+                          id={item.CopyrightHolder_id}
+                          title={`${item.NFTtitle} by ${item.CopyrightHolderName}`}
+                          subtitle={`${item.NFTprice} ETH`}
+                          actionIcon={
+                            <div>
+                              <IconButton
+                                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                                aria-label={`info about ${item.title}`}
+                                type="button" 
+                              >
+                                <Info />
+                              </IconButton>               
+                            </div>
+                          }
+                        />
+                      </ImageListItem>
+                    ))}
+                  </ImageList>
+            </Grid>
           </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-          <Grid xs={2} mx={2} mt={1} mb={1}>
-          <RecipeReviewCard
-              Recipe={Recipe}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          height: '10%',
-          padding: '1%',
-        }}>
-        <Grid 
-          container rowSpacing={1} 
-          columnSpacing={{xs: 1, sm:2, md:3}}
-          alignItems="center"
-          justifyContent="center"
-          ><Pagination count={10} /></Grid>
-      </Box>
-      {/* <Bottomfixed/> */}
-    </>
+      </section>
+
+  </ThemeProvider>
   );
-};
+}
 
 export default Marketmainform;
+

@@ -2,8 +2,11 @@ import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Mypageportfolioform } from '../../components/myPage'
+import { useCookies } from 'react-cookie';
+import Aftertopfixed from 'components/fixed/Aftertopfixed';
 
 const MyPagePortfolio = () => {
+  const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
   const items = {
       '능력과 자격': ['언어능력', '자격증(민간, 국가공인)'],
       '학력': ['성적 및 학점', '전공 및 학교'],
@@ -16,7 +19,7 @@ const MyPagePortfolio = () => {
 
   const [portfolio, setPortfolio] = useState({
     'activity': undefined,
-    'selfintro': undefined,
+    'contents': undefined,
   });
   const changeEssayHandler = (e) => {
     setPortfolio((d) => ({...d, [e.target.name]: e.target.value}));
@@ -39,8 +42,8 @@ const MyPagePortfolio = () => {
   const [activate, setActivate] = useState(false);
   useEffect(() => {
     if (portfolio.activity === undefined ||
-      portfolio.selfintro === undefined ||
-      portfolio.selfintro === '') {
+      portfolio.contents === undefined ||
+      portfolio.contents === '') {
       setActivate(() => true);
     } else {
       setActivate(() => false);
@@ -49,33 +52,36 @@ const MyPagePortfolio = () => {
 
   const navigate = useNavigate();
   const registerHandler = async() => {
-    const formData = new FormData();
-    formData.append('activity', portfolio.activity);
-    formData.append('selfintro', portfolio.selfintro);
-
-    const config = {
-        headers: {
-            "content-type": "multipart/form-data"
-        }
-    };
-    await axios.post("/api/profile/portfolio", formData, config).then((response)=>{
+    await axios ({
+      method: 'post',
+      url: `/api/element/${cookies.portfoliokey}`,
+      data: {
+        activity: portfolio.activity,
+        contents: portfolio.contents,
+      }
+    })
+    .then((response)=>{
         console.log(response);
-        navigate('/main');
+        navigate('/mypage/detail');
     }).catch((Error)=>{
         console.log(Error);
     })
   };
 
   return (
-    <Mypageportfolioform
-      portfolio={portfolio}
-      items={items}
-      isChecked={isChecked}
-      activate={activate}
-      changeEssayHandler={changeEssayHandler}
-      checkedItemHandler={checkedItemHandler}
-      registerHandler={registerHandler}/>
+    <>
+      <Aftertopfixed/>
+      <Mypageportfolioform
+        portfolio={portfolio}
+        items={items}
+        isChecked={isChecked}
+        activate={activate}
+        changeEssayHandler={changeEssayHandler}
+        checkedItemHandler={checkedItemHandler}
+        registerHandler={registerHandler}/>
+      {/* <Bottomfixed/> */}
+    </>
   );
 }
 
-export default MyPagePortfolio
+export default MyPagePortfolio;
