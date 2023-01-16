@@ -16,7 +16,7 @@ const theme = createTheme({
 const Mypageselfintroform = (props) => {
   return (
     <ThemeProvider theme={theme}>
-      <section className='mypageportfolio1'>
+      <section className='mypageselfintro1'>
           <Grid container justifyContent='center' alignItems='center' spacing={2}>
             <Grid item xs={12} md={9} lg={8}>
               <h1 style={{ fontSize: '30px', fontWeight: '800', color: '#2B2627' }}>
