@@ -50,7 +50,10 @@ const MarketPurchase = () => {
     await axios.put('/api/nft/purchase', body)
       .then(res => {
         console.log(res.data);
-        enqueueSnackbar('NFT 구매를 요청하였습니다.', { variant: 'info' });
+        if (res.data.message === 'Its already own!')
+          enqueueSnackbar('이미 소유한 NFT입니다.', { variant: 'error' });
+        else
+          enqueueSnackbar('NFT 구매를 요청하였습니다.', { variant: 'info' });
       })
       .catch(e => {
         console.log(e);

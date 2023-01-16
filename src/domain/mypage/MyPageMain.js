@@ -51,7 +51,7 @@ const MyPageMain = () => {
         })
           .then(res => {
             console.log(res.data);
-            navigate('/mypage');
+            window.location.reload();
           })
           .catch(e => console.log(e));
       })
