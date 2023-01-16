@@ -9,7 +9,7 @@ import loading from 'img/loading.gif';
 
 const theme = createTheme({
   palette: {
-    secondary: { main: '#A4A4A4' },
+    secondary: { main: '#000000' },
     warning: { main: '#D34658' }
   },
 });
@@ -31,8 +31,8 @@ const MypageNFTmintform = (props) => {
           <Grid item container xs={12} justifyContent='center'>
             <Grid item xs={12} md={4} lg={4} textAlign='center'>
               <div style={{ textAlign: 'left', position: 'relative' }}>
-                <LoadingImage placeholderImg={loading} style={{ width: '80%', opacity: '50%' }} src={cookies.image} className="mainimg components" alt="lowlogo" />
-                <QuestionMarkIcon color='warning' style={{ opacity: '90%', width: '80%', height: '80%', position: 'absolute', top: '10%', left: '0%' }} />
+                <LoadingImage placeholderImg={loading} style={{ width: '80%', opacity: '30%' }} src={cookies.image} className="mainimg components" alt="lowlogo" />
+                <QuestionMarkIcon color='warning' style={{ opacity: '80%', width: '80%', height: '80%', position: 'absolute', top: '10%', left: '0%' }} />
               </div>
             </Grid>
             <Grid item className="profile" xs={12} md={5} lg={4}>

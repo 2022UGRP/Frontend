@@ -43,7 +43,7 @@ const MarketMain = () => {
       width: '100vw',
       background: 'black'
     }} /> */}
-    <ResponsiveAppBar/>
+    {/* <ResponsiveAppBar/> */}
     <Marketmainform
       NFTDatas={NFTDatas}
     />

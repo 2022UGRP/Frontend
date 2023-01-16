@@ -9,7 +9,7 @@ import Aftertopfixed from 'components/fixed/Aftertopfixed';
 const MyPageNFTmint = () => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const [cookies,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
+  const [cookies, setCookie,] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey', 'image']);
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(cookies.image);
   const [title, setTitle] = useState('');
@@ -49,6 +49,7 @@ const MyPageNFTmint = () => {
         })
           .then(res => {
             console.log(res.data);
+            setCookie('portfoliokey', res.data.portfolioKey);
             enqueueSnackbar('NFT 발행에 성공하였습니다', { variant: 'info' });
             navigate('/mypage/detail');
           })

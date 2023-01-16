@@ -405,3 +405,51 @@ footer{
 }
 .mypagenftmint h3 { font-size: 20px; font-weight: 700; }
 .mypagenftmint input:focus {outline: 2px solid #D34658;}
+
+/* mypageportfolio */
+.mypageportfolio1 {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.mypageportfolio1_container {
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 25px;
+  border-radius: 4px;
+  /* border: '1px #DADADA solid'; */
+}
+.css-3k6c2a-MuiInputBase-root-MuiFilledInput-root{
+  background-color: #f4f4f4 !important;
+}
+.css-3k6c2a-MuiInputBase-root-MuiFilledInput-root:hover{
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
+  left: -200px !important;
+}
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::before {
+  left: -200px !important;
+}
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
+  left: -200px !important;
+}
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
+  left: -200px !important;
+}
+
+.mypageportfolio1 input {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  border: 1px #DADADA solid;
+  padding: 20px 25px 20px 25px;
+  height: 0px;
+}
+
+.mypageportfolio1 input:focus {outline: 2px solid #D34658;}
+
+
+/* marketmain */
+.marketmain1{
+  margin-top: 30px;
+}

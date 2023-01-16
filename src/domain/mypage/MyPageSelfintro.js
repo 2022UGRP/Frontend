@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mypageselfintroform } from '../../components/myPage';
 import { useCookies } from 'react-cookie';
+import Aftertopfixed from 'components/fixed/Aftertopfixed';
 
 const MyPageSelfintro = () => {
   const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
@@ -49,13 +50,17 @@ const MyPageSelfintro = () => {
   };
 
   return (
-    <Mypageselfintroform
-      activate={activate}
-      changeEssayHandler={changeEssayHandler}
-      registerHandler={registerHandler}
-      setStartDate={setStartDate}  
-      startdate={startdate}
-    />
+    <>
+      <Aftertopfixed/>
+      <Mypageselfintroform
+        activate={activate}
+        changeEssayHandler={changeEssayHandler}
+        registerHandler={registerHandler}
+        setStartDate={setStartDate}  
+        startdate={startdate}
+      />
+      {/* <Bottomfixed/> */}
+    </>
   );
 }
 

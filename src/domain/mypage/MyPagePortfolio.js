@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Mypageportfolioform } from '../../components/myPage'
 import { useCookies } from 'react-cookie';
+import Aftertopfixed from 'components/fixed/Aftertopfixed';
 
 const MyPagePortfolio = () => {
   const [cookies, , removeCookies] = useCookies(['loginkey', 'name', 'age', 'school', 'major', 'portfoliokey']);
@@ -68,14 +69,18 @@ const MyPagePortfolio = () => {
   };
 
   return (
-    <Mypageportfolioform
-      portfolio={portfolio}
-      items={items}
-      isChecked={isChecked}
-      activate={activate}
-      changeEssayHandler={changeEssayHandler}
-      checkedItemHandler={checkedItemHandler}
-      registerHandler={registerHandler}/>
+    <>
+      <Aftertopfixed/>
+      <Mypageportfolioform
+        portfolio={portfolio}
+        items={items}
+        isChecked={isChecked}
+        activate={activate}
+        changeEssayHandler={changeEssayHandler}
+        checkedItemHandler={checkedItemHandler}
+        registerHandler={registerHandler}/>
+      {/* <Bottomfixed/> */}
+    </>
   );
 }
 
